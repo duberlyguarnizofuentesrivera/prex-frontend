@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from "@angular/router";
+import {PageIndexComponent} from "./main-site/page-index/page-index.component";
+import {PageLoginComponent} from "./main-site/page-login/page-login.component";
 
-const routes: Routes = [];
+const appRoutes: Routes = [
+  {path: '', component: PageIndexComponent, pathMatch: 'full'},
+  {path: 'login', component: PageLoginComponent, pathMatch: 'full'},
+];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const routing = RouterModule.forRoot(appRoutes);
