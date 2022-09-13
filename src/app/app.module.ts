@@ -17,6 +17,19 @@ import {PasswordModule} from "primeng/password";
 import {UserHeaderComponent} from './main-site/components/user-header/user-header.component';
 import {DividerModule} from "primeng/divider";
 import {PageSearchByCodeComponent} from './main-site/page-search-by-code/page-search-by-code.component';
+import {
+  PageSearchByCodeResultsComponent
+} from './main-site/page-search-by-code-results/page-search-by-code-results.component';
+import {
+  SearchShipmentsResultsTableComponent
+} from './main-site/components/search-shipments-results-table/search-shipments-results-table.component';
+import {TableModule} from "primeng/table";
+import {PageUserShipmentsComponent} from './main-site/page-user-shipments/page-user-shipments.component';
+import {MultiSelectModule} from "primeng/multiselect";
+import {DropdownModule} from "primeng/dropdown";
+import {FormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -27,20 +40,30 @@ import {PageSearchByCodeComponent} from './main-site/page-search-by-code/page-se
     LoginWindowComponent,
     MainFooterComponent,
     UserHeaderComponent,
-    PageSearchByCodeComponent
+    PageSearchByCodeComponent,
+    PageSearchByCodeResultsComponent,
+    SearchShipmentsResultsTableComponent,
+    PageUserShipmentsComponent
   ],
-    imports: [
-        routing,
-        BrowserModule,
-        CheckboxModule,
-        InputTextModule,
-        ButtonModule,
-        RippleModule,
-        StyleClassModule,
-        PasswordModule,
-        DividerModule
-    ],
+  imports: [
+    routing,
+    BrowserModule,
+    CheckboxModule,
+    InputTextModule,
+    ButtonModule,
+    RippleModule,
+    StyleClassModule,
+    PasswordModule,
+    DividerModule,
+    TableModule,
+    MultiSelectModule,
+    DropdownModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    CardModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
