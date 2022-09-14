@@ -30,6 +30,14 @@ import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CardModule} from "primeng/card";
+import {
+  SearchClientsResultsTableComponent
+} from './main-site/components/search-clients-results-table/search-clients-results-table.component';
+import {PageUserClientsComponent} from './main-site/page-user-clients/page-user-clients.component';
+import {PageUserReceiversComponent} from './main-site/page-user-receivers/page-user-receivers.component';
+import {
+  SearchReceiversResultsTableComponent
+} from './main-site/components/search-receivers-results-table/search-receivers-results-table.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +51,11 @@ import {CardModule} from "primeng/card";
     PageSearchByCodeComponent,
     PageSearchByCodeResultsComponent,
     SearchShipmentsResultsTableComponent,
-    PageUserShipmentsComponent
+    PageUserShipmentsComponent,
+    SearchClientsResultsTableComponent,
+    PageUserClientsComponent,
+    PageUserReceiversComponent,
+    SearchReceiversResultsTableComponent
   ],
   imports: [
     routing,

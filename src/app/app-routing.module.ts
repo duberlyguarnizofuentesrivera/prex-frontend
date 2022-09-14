@@ -6,6 +6,8 @@ import {
   PageSearchByCodeResultsComponent
 } from "./main-site/page-search-by-code-results/page-search-by-code-results.component";
 import {PageUserShipmentsComponent} from "./main-site/page-user-shipments/page-user-shipments.component";
+import {PageUserClientsComponent} from "./main-site/page-user-clients/page-user-clients.component";
+import {PageUserReceiversComponent} from "./main-site/page-user-receivers/page-user-receivers.component";
 
 const appRoutes: Routes = [
   {path: '', component: PageIndexComponent, pathMatch: 'full'},
@@ -13,6 +15,8 @@ const appRoutes: Routes = [
   {path: 'search-by-code', component: PageSearchByCodeComponent, pathMatch: 'full'},
   {path: 'search-by-code-results', component: PageSearchByCodeResultsComponent, pathMatch: 'full'},
   {path: 'app/shipments', component: PageUserShipmentsComponent, pathMatch: 'full'},
+  {path: 'app/clients', component: PageUserClientsComponent, pathMatch: 'full'},
+  {path: 'app/receivers', component: PageUserReceiversComponent, pathMatch: 'full'},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

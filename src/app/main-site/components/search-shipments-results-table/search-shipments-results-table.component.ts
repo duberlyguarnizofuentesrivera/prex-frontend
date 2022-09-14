@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ShipmentStatus} from "../../enums/ShipmentStatus";
+import {ClientType} from "../../enums/ClientType";
 
 @Component({
   selector: 'app-search-shipments-results-table',
@@ -11,7 +13,7 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
   shipmentStatus: any[];
   dateFilters: any[];
   clientType: any[];
-  selectedShipmentStatus: any;
+  selectedShipmentStatus: string;
   selectedClientType: any;
   selectedDateFilter: any;
 
@@ -19,13 +21,16 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
   showFilters: boolean = false;
 
   constructor() {
-    this.shipmentStatus = [
-      {id: 1, name: "Todos"},
-      {id: 2, name: "Entregado"},
-      {id: 3, name: "Devuelto"},
-      {id: 4, name: "En Curso"},
-      {id: 5, name: "En Almacén"}
-    ];
+    this.shipmentStatus = Object.values(ShipmentStatus);
+    console.log("shipmentStatus:");
+    console.log(this.shipmentStatus);
+    console.log("values");
+    console.log(Object.values(ShipmentStatus));
+    console.log("keys");
+    console.log(Object.keys(ShipmentStatus));
+
+    this.selectedShipmentStatus = ShipmentStatus.RECEIVED;
+
     this.dateFilters = [
       {id: 1, name: "Todos"},
       {id: 2, name: "Hoy"},
@@ -33,11 +38,7 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
       {id: 4, name: "Últimos 30 días"},
       {id: 5, name: "Más de 30 días"}
     ];
-    this.clientType = [
-      {id: 1, name: "Todos"},
-      {id: 2, name: "Natural"},
-      {id: 3, name: "Corporativo"}
-    ];
+    this.clientType = Object.values(ClientType);
 
     this.shipments = [{
       "ticket": "AB-6578",
