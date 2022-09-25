@@ -1,4 +1,10 @@
 <app-main-header></app-main-header>
+
+<p-dialog header="Código Incorrecto" [modal]="true" [(visible)]="displayWrongCodeModal" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+  <p class="text-center"><i class="pi pi-exclamation-triangle" style="font-size: 4rem"></i><br>
+    El código ingresado es incorrecto. Por favor, verifica que lo has escrito correctamente. Si el problema persiste, por favor contactanos.</p>
+</p-dialog>
+
 <div class="grid grid-nogutter surface-section text-800">
   <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
     <section>
@@ -7,8 +13,8 @@
       <p class="mt-0 mb-4 text-700 line-height-3">Ingresa tu código en el cuadro de abajo. Puedes encontrar tu código de
         cliente en tu ticket, o puedes solicitarlo poniéndote en contacto con nosotros.</p>
 
-      <input class="shadow-7 p-inputtext-lg" pInputText placeholder="Código" type="text"/>
-      <button class="ml-3 p-button-raised shadow-7 p-button-lg" icon="pi pi-search" label="Buscar" pButton pRipple type="button"></button>
+      <input (keyup)="checkEnableButton()" [(ngModel)]="inputCode" class="shadow-7 p-inputtext-lg" pInputText placeholder="Código" type="text"/>
+      <button (click)="validateCode()" [disabled]="buttonDisabled" class="ml-3 p-button-raised shadow-7 p-button-lg" icon="pi pi-search" label="Buscar" pButton pRipple type="button"></button>
     </section>
   </div>
   <div class="col-12 md:col-6 overflow-hidden">

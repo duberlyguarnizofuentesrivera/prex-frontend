@@ -6,10 +6,32 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./page-search-by-code.component.css']
 })
 export class PageSearchByCodeComponent implements OnInit {
+  rightCode: string = '123456';
+  inputCode: string = '';
+  displayWrongCodeModal: boolean = false;
+  buttonDisabled: boolean = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  checkEnableButton() {
+    if (this.inputCode.length === 6) {
+      this.buttonDisabled = false;
+    } else {
+      this.buttonDisabled = true;
+    }
+  }
+
+  validateCode() {
+    if (this.inputCode === this.rightCode) {
+      console.log('You are right!');
+      this.displayWrongCodeModal = false;
+    } else {
+      this.displayWrongCodeModal = true;
+      console.log('You are wrong!');
+    }
+  }
 }

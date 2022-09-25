@@ -1,6 +1,6 @@
 <div class="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static mb-3">
   <a class="flex align-items-center" href="#">
-    <img src="assets/logos/logo.svg" alt="Logo RedXPress" height="50" class="mr-0 lg:mr-2"><span class="text-900 font-medium text-2xl line-height-3 mr-8">RedXPress</span>
+    <img src="assets/logos/logo.png" alt="Logo RedXPress" height="50" class="mr-0 lg:mr-2"><span class="text-900 font-medium text-2xl line-height-3 mr-8">RedXPress</span>
   </a>
   <a pRipple class="cursor-pointer block lg:hidden text-700" pStyleClass="@next" enterClass="hidden" leaveToClass="hidden" [hideOnOutsideClick]="true">
     <i class="pi pi-bars text-4xl"></i>
@@ -13,7 +13,7 @@
         </a>
       </li>
       <li>
-        <a  pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
+        <a href="/search-by-code" pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
           <span>Seguimiento</span>
         </a>
       </li>
@@ -34,7 +34,7 @@
       </li>
     </ul>
     <div class="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
-      <button pButton pRipple label="Iniciar Sesión" class="p-button-text p-button-rounded border-none font-light line-height-2 text-blue-500"></button>
+      <button (click)="goToLogin()" pButton pRipple label="Iniciar Sesión" class="p-button-text p-button-rounded border-none font-light line-height-2 text-blue-500"></button>
     </div>
   </div>
 </div>

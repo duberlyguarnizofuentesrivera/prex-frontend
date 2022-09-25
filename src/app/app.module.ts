@@ -38,6 +38,10 @@ import {PageUserReceiversComponent} from './main-site/page-user-receivers/page-u
 import {
   SearchReceiversResultsTableComponent
 } from './main-site/components/search-receivers-results-table/search-receivers-results-table.component';
+import {DialogModule} from "primeng/dialog";
+import {PageUserTicketsComponent} from './main-site/page-user-tickets/page-user-tickets.component';
+import {PageUserTicketsNewComponent} from './main-site/page-user-tickets-new/page-user-tickets-new.component';
+import {AutoCompleteModule} from "primeng/autocomplete";
 
 @NgModule({
   declarations: [
@@ -55,25 +59,29 @@ import {
     SearchClientsResultsTableComponent,
     PageUserClientsComponent,
     PageUserReceiversComponent,
-    SearchReceiversResultsTableComponent
+    SearchReceiversResultsTableComponent,
+    PageUserTicketsComponent,
+    PageUserTicketsNewComponent
   ],
-  imports: [
-    routing,
-    BrowserModule,
-    CheckboxModule,
-    InputTextModule,
-    ButtonModule,
-    RippleModule,
-    StyleClassModule,
-    PasswordModule,
-    DividerModule,
-    TableModule,
-    MultiSelectModule,
-    DropdownModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    CardModule
-  ],
+    imports: [
+        routing,
+        BrowserModule,
+        CheckboxModule,
+        InputTextModule,
+        ButtonModule,
+        RippleModule,
+        StyleClassModule,
+        PasswordModule,
+        DividerModule,
+        TableModule,
+        MultiSelectModule,
+        DropdownModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        CardModule,
+        DialogModule,
+        AutoCompleteModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,8 @@ import {
 import {PageUserShipmentsComponent} from "./main-site/page-user-shipments/page-user-shipments.component";
 import {PageUserClientsComponent} from "./main-site/page-user-clients/page-user-clients.component";
 import {PageUserReceiversComponent} from "./main-site/page-user-receivers/page-user-receivers.component";
+import {PageUserTicketsNewComponent} from "./main-site/page-user-tickets-new/page-user-tickets-new.component";
+import {PageUserTicketsComponent} from "./main-site/page-user-tickets/page-user-tickets.component";
 
 const appRoutes: Routes = [
   {path: '', component: PageIndexComponent, pathMatch: 'full'},
@@ -17,6 +19,8 @@ const appRoutes: Routes = [
   {path: 'app/shipments', component: PageUserShipmentsComponent, pathMatch: 'full'},
   {path: 'app/clients', component: PageUserClientsComponent, pathMatch: 'full'},
   {path: 'app/receivers', component: PageUserReceiversComponent, pathMatch: 'full'},
+  {path: 'app/tickets', component: PageUserTicketsComponent, pathMatch: 'full'},
+  {path: 'app/tickets-new', component: PageUserTicketsNewComponent, pathMatch: 'full'},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

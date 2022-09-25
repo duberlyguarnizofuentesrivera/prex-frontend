@@ -1,5 +1,5 @@
-<div [class]="filtersVisibilityClass">
-  <p-card header="Filtros">
+
+  <p-card header="Filtros" [class]="filtersVisibilityClass">
     <div class="formgrid grid">
       <div class="field col-12 md:col-6">
     <span><label for="float-input-ticket-number">Nro. de ticket </label>
@@ -30,8 +30,7 @@
     </div>
   </p-card>
 
-</div>
-<div class="pt-3">
+
   <p-card>
     <p-table [value]="shipments" responsiveLayout="stack">
       <ng-template pTemplate="caption">
@@ -63,4 +62,4 @@
       </ng-template>
     </p-table>
   </p-card>
-</div>
+
