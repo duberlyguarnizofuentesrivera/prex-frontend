@@ -42,6 +42,14 @@ import {DialogModule} from "primeng/dialog";
 import {PageUserTicketsComponent} from './main-site/page-user-tickets/page-user-tickets.component';
 import {PageUserTicketsNewComponent} from './main-site/page-user-tickets-new/page-user-tickets-new.component';
 import {AutoCompleteModule} from "primeng/autocomplete";
+import {ShipmentDetailComponent} from './main-site/components/shipment-detail/shipment-detail.component';
+import {
+  PageUserShipmentsDetailComponent
+} from './main-site/page-user-shipments-detail/page-user-shipments-detail.component';
+import {ChipModule} from "primeng/chip";
+import {TagModule} from "primeng/tag";
+import {BreadcrumbModule} from "primeng/breadcrumb";
+import {TimelineModule} from "primeng/timeline";
 
 @NgModule({
   declarations: [
@@ -61,27 +69,33 @@ import {AutoCompleteModule} from "primeng/autocomplete";
     PageUserReceiversComponent,
     SearchReceiversResultsTableComponent,
     PageUserTicketsComponent,
-    PageUserTicketsNewComponent
+    PageUserTicketsNewComponent,
+    ShipmentDetailComponent,
+    PageUserShipmentsDetailComponent
   ],
-    imports: [
-        routing,
-        BrowserModule,
-        CheckboxModule,
-        InputTextModule,
-        ButtonModule,
-        RippleModule,
-        StyleClassModule,
-        PasswordModule,
-        DividerModule,
-        TableModule,
-        MultiSelectModule,
-        DropdownModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        CardModule,
-        DialogModule,
-        AutoCompleteModule
-    ],
+  imports: [
+    routing,
+    BrowserModule,
+    CheckboxModule,
+    InputTextModule,
+    ButtonModule,
+    RippleModule,
+    StyleClassModule,
+    PasswordModule,
+    DividerModule,
+    TableModule,
+    MultiSelectModule,
+    DropdownModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    CardModule,
+    DialogModule,
+    AutoCompleteModule,
+    ChipModule,
+    TagModule,
+    BreadcrumbModule,
+    TimelineModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

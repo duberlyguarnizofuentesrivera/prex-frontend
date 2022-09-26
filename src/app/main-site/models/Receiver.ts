@@ -7,6 +7,6 @@ export interface Receiver {
   receiverIdNumber:string;
   receiverPhone:string;
   receiverEmail:string;
-  receiverAddress:Address;
+  receiverAddress:Address[];
   receiverContactName:string;
 }

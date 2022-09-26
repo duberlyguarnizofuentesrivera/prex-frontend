@@ -3,17 +3,23 @@ import {ShipmentProblem} from "../enums/ShipmentProblem";
 import {Client} from "./Client";
 import {Receiver} from "./Receiver";
 import {SystemUser} from "./SystemUser";
+import {Address} from "./Address";
 
 
 export interface Shipment {
   shipmentId:number;
+  shipmentCode:string;
   shipmentNumberOfPackages:number;
-  shipmentReceptionDate:Date;
-  shipmentDeliveryDate:Date;
+  shipmentReceptionDate?:Date;
+  shipmentOnRouteDate?:Date;
+  shipmentOnReturnDate?:Date;
+  shipmentReturnDate?:Date;
+  shipmentDeliveryDate?:Date;
   shipmentClient:Client;
+  shipmentAddress:Address;
   shipmentReceiver:Receiver;
   shipmentDeliveryTransporter:SystemUser;
-  shipmentPickUpTransporter:SystemUser;
+  shipmentPickUpTransporter?:SystemUser;
   shipmentReceiverUser:SystemUser;
   shipmentCost:number;
   shipmentPhotoUrls:string[];

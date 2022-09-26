@@ -10,6 +10,9 @@ import {PageUserClientsComponent} from "./main-site/page-user-clients/page-user-
 import {PageUserReceiversComponent} from "./main-site/page-user-receivers/page-user-receivers.component";
 import {PageUserTicketsNewComponent} from "./main-site/page-user-tickets-new/page-user-tickets-new.component";
 import {PageUserTicketsComponent} from "./main-site/page-user-tickets/page-user-tickets.component";
+import {
+  PageUserShipmentsDetailComponent
+} from "./main-site/page-user-shipments-detail/page-user-shipments-detail.component";
 
 const appRoutes: Routes = [
   {path: '', component: PageIndexComponent, pathMatch: 'full'},
@@ -17,6 +20,7 @@ const appRoutes: Routes = [
   {path: 'search-by-code', component: PageSearchByCodeComponent, pathMatch: 'full'},
   {path: 'search-by-code-results', component: PageSearchByCodeResultsComponent, pathMatch: 'full'},
   {path: 'app/shipments', component: PageUserShipmentsComponent, pathMatch: 'full'},
+  {path: 'app/shipments/:shipmentId', component: PageUserShipmentsDetailComponent, pathMatch: 'full'},
   {path: 'app/clients', component: PageUserClientsComponent, pathMatch: 'full'},
   {path: 'app/receivers', component: PageUserReceiversComponent, pathMatch: 'full'},
   {path: 'app/tickets', component: PageUserTicketsComponent, pathMatch: 'full'},
