@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Shipment} from "../../models/Shipment";
 import {ShipmentServiceService} from "../../services/shipment-service.service";
 import {MenuItem, PrimeIcons} from "primeng/api";
+import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-shipment-detail',
@@ -9,54 +11,62 @@ import {MenuItem, PrimeIcons} from "primeng/api";
   styleUrls: ['./shipment-detail.component.css']
 })
 export class ShipmentDetailComponent implements OnInit {
-  @Input() shipmentId: string;
-  shipmentDetail: Shipment;
-  address: MenuItem[]
+  shipmentId!: number;
+  shipmentDetail: Observable<Shipment>;
+  address: MenuItem[];
   events: any[];
 
-  constructor(private shipmentService: ShipmentServiceService) {
-    this.shipmentId = "";
-    this.shipmentDetail = shipmentService.getShipmentDetail(this.shipmentId);
-    this.address = [{label: this.shipmentDetail.shipmentAddress.addressRegion},
-      {label: this.shipmentDetail.shipmentAddress.addressProvince},
-      {label: this.shipmentDetail.shipmentAddress.addressDistrict},
-      {label: this.shipmentDetail.shipmentAddress.addressLine},];
-
-    this.events = [
-      {
-        status: 'Recepcionado',
-        date: this.shipmentDetail.shipmentCreationDate.toLocaleString(),
-        icon: PrimeIcons.CALENDAR,
-        color: '#f06bac'
+  constructor(private route: ActivatedRoute, private shipmentService: ShipmentServiceService) {
+    const routeParams = this.route.snapshot.paramMap;
+    this.shipmentId = Number(routeParams.get('shipmentId'));
+    console.log("Ruta:")
+    console.log(this.shipmentId);
+    this.events = [];
+    this.address = [];
+    this.shipmentDetail = this.shipmentService.getShipment(this.shipmentId);
+    console.log(this.shipmentDetail);
+    this.shipmentDetail.subscribe((data) => {
+      this.address = [{label: data.shipmentAddress.addressRegion},
+        {label: data.shipmentAddress.addressProvince},
+        {label: data.shipmentAddress.addressDistrict},
+        {label: data.shipmentAddress.addressLine},];
+      this.events = [
+        {
+          status: 'Recepcionado',
+          date: data.shipmentCreationDate.toLocaleString(),
+          icon: PrimeIcons.CALENDAR,
+          color: '#f06bac'
+        }
+      ];
+      if (data.shipmentReceptionDate != undefined) {
+        this.events.push({
+          status: 'En almacén',
+          date: data.shipmentReceptionDate.toLocaleString(),
+          icon: PrimeIcons.BOX,
+          color: '#8183f4'
+        })
       }
-    ];
-    if (this.shipmentDetail.shipmentReceptionDate != undefined) {
-      this.events.push({
-        status: 'En almacén',
-        date: this.shipmentDetail.shipmentReceptionDate.toLocaleString(),
-        icon: PrimeIcons.BOX,
-        color: '#8183f4'
-      })
-    }
-    if (this.shipmentDetail.shipmentOnRouteDate != undefined) {
-      this.events.push({
-        status: 'En reparto',
-        date: this.shipmentDetail.shipmentOnRouteDate.toLocaleString(),
-        icon: PrimeIcons.CAR,
-        color: '#35c4dc'
-      })
-    }
-    if (this.shipmentDetail.shipmentDeliveryDate != undefined) {
-      this.events.push({
-        status: 'Entregado',
-        date: this.shipmentDetail.shipmentDeliveryDate.toLocaleString(),
-        icon: PrimeIcons.CHECK,
-        color: '#35dc35'
-      })
-    }
+      if (data.shipmentOnRouteDate != undefined) {
+        this.events.push({
+          status: 'En reparto',
+          date: data.shipmentOnRouteDate.toLocaleString(),
+          icon: PrimeIcons.CAR,
+          color: '#35c4dc'
+        })
+      }
+      if (data.shipmentDeliveryDate != undefined) {
+        this.events.push({
+          status: 'Entregado',
+          date: data.shipmentDeliveryDate.toLocaleString(),
+          icon: PrimeIcons.CHECK,
+          color: '#35dc35'
+        })
+      }
+    });
   }
+
 
   ngOnInit(): void {
-  }
 
+  }
 }

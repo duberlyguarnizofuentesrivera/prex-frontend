@@ -1,92 +1,94 @@
+<ng-container *ngIf="(shipmentDetail | async) as shipmentDetail">
+  <div class="surface-section">
+    <div class="text-500 mb-5"></div>
 
-<div class="surface-section">
-  <div class="font-medium text-3xl text-900 mb-3">
-    Creado: {{shipmentDetail.shipmentCreationDate.toLocaleDateString()}}</div>
-  <div class="text-500 mb-5"></div>
+    <ul class="list-none p-0 m-0">
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Cliente</div>
+        <div
+          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentClient.clientNames}}</div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Documento</div>
+        <div
+          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentClient.clientIdNumber}}</div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Dirección de entrega</div>
+        <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+          <p-breadcrumb [model]="address"></p-breadcrumb>
+        </div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Cantidad de paquetes</div>
+        <div
+          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentNumberOfPackages}}</div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Estado actual</div>
+        <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+          <p-tag *ngIf="shipmentDetail.shipmentStatus=='Entregado'" severity="success" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
+          <p-tag *ngIf="shipmentDetail.shipmentStatus=='En Almacén' || shipmentDetail.shipmentStatus=='Recepcionado'||shipmentDetail.shipmentStatus=='En Reparto'" severity="info" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
+          <p-tag *ngIf="shipmentDetail.shipmentStatus=='Devuelto' || shipmentDetail.shipmentStatus=='En Devolución'" severity="danger" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
+        </div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Transportista asignado</div>
+        <div
+          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentDeliveryTransporter.systemUserNames}}</div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Observaciones</div>
+        <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentObservations}}</div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Problemas con la entrega</div>
+        <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            <p-tag *ngIf="shipmentDetail.shipmentProblems=='Ninguno'" severity="success" value="{{shipmentDetail.shipmentProblems}}"></p-tag>
+            <p-tag *ngIf="shipmentDetail.shipmentProblems!='Ninguno'" severity="danger" value="{{shipmentDetail.shipmentProblems}}"></p-tag>
+        </div>
+        <div class="w-6 md:w-2 flex justify-content-end">
+          <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+        </div>
+      </li>
+    </ul>
 
-  <ul class="list-none p-0 m-0">
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Cliente</div>
-      <div
-        class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentClient.clientNames}}</div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Documento</div>
-      <div
-        class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentClient.clientIdNumber}}</div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Dirección de entrega</div>
-      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
-        <p-breadcrumb [model]="address"></p-breadcrumb>
-      </div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Cantidad de paquetes</div>
-      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentNumberOfPackages}}</div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Estado actual</div>
-      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+  </div>
 
-        <p-tag severity="warning" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
-      </div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Transportista asignado</div>
-      <div
-        class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentDeliveryTransporter.systemUserNames}}</div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Observaciones</div>
-      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentObservations}}</div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-      <div class="text-500 w-6 md:w-2 font-medium">Problemas con la entrega</div>
-      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
-        <p-tag severity="danger" value="{{shipmentDetail.shipmentProblems}}"></p-tag>
-      </div>
-      <div class="w-6 md:w-2 flex justify-content-end">
-        <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
-      </div>
-    </li>
-  </ul>
-
-</div>
-
-<p-card class="w-6 md:w-2">
-  <p-timeline [value]="events" layout="vertical">
-    <ng-template let-event pTemplate="opposite">
-      <small class="p-text-secondary">{{event.date}}</small>
-    </ng-template>
-    <ng-template let-event pTemplate="content">
-      <span>{{event.status}}</span>
-    </ng-template>
-    <ng-template pTemplate="marker" let-event>
-        <span class="custom-marker shadow-2" [style.background-color]="event.color">
+  <p-card class="w-6 md:w-2">
+    <p-timeline [value]="events" layout="vertical">
+      <ng-template let-event pTemplate="opposite">
+        <small class="p-text-secondary">{{event.date}}</small>
+      </ng-template>
+      <ng-template let-event pTemplate="content">
+        <span>{{event.status}}</span>
+      </ng-template>
+      <ng-template let-event pTemplate="marker">
+        <span [style.background-color]="event.color" class="custom-marker shadow-2">
             <i [ngClass]="event.icon"></i>
         </span>
-    </ng-template>
-  </p-timeline>
-</p-card>
+      </ng-template>
+    </p-timeline>
+  </p-card>
+</ng-container>

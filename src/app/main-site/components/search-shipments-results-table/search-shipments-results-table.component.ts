@@ -41,6 +41,7 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
     this.clientType = Object.values(ClientType);
 
     this.shipments = [{
+      "id": 1,
       "ticket": "AB-6578",
       "code": "AB-6578-1",
       "destination": "Juan Manuel Perez De Cuellar",
@@ -51,6 +52,7 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
       "photos_url": ["ab65781.jpg", "ab65782.jpg", "ab65783.jpg"]
     },
       {
+        "id": 2,
         "ticket": "AB-6578",
         "code": "AB-6578-2",
         "destination": "Luz Maria Anda",
@@ -61,6 +63,7 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
         "photos_url": ["ab65781.jpg"]
       },
       {
+        "id": 5,
         "ticket": "AB-6592",
         "code": "AB-6592-1",
         "destination": "Monique Pardo Ugarteche",

@@ -1,0 +1,242 @@
+{
+  "shipments": [
+    {
+      "id": 2,
+      "shipmentCode": "AB6578-1",
+      "shipmentNumberOfPackages": 3,
+      "shipmentReceptionDate": "2022-08-18T00:00:00.000Z",
+      "shipmentDeliveryDate": "2022-08-17T00:00:00.000Z",
+      "shipmentOnRouteDate": "2022-08-18T00:00:00.000Z",
+      "shipmentOnReturnDate": "2022-08-18T00:00:00.000Z",
+      "shipmentClient": {
+        "clientId": 2,
+        "clientIdNumber": "43558020",
+        "clientIsCompany": false,
+        "clientContactName": "",
+        "clientPickUpAddress": [
+          {
+            "addressId": 23,
+            "addressRegion": "Lima",
+            "addressProvince": "Lima",
+            "addressDistrict": "Los Olivos",
+            "addressLine": "Av. Los Olivos 123",
+            "addressObservations": ""
+          },
+          {
+            "addressId": 24,
+            "addressRegion": "Lima",
+            "addressProvince": "Lima",
+            "addressDistrict": "San Juan de Miraflores",
+            "addressLine": "Mz. L lt. 12 AAHH Los Tirapiedra",
+            "addressObservations": "Hay perros bravos"
+          }
+        ],
+        "clientNames": "Johana María Valverde Perez",
+        "clientPhone": "987654321",
+        "clientEmail": "johanavp@gmail.com",
+        "clientCreationDate": "2021-07-10T00:00:00.000Z",
+        "clientModificationDate": "2021-07-10T00:00:00.000Z",
+        "clientStatus": "Activo"
+      },
+      "shipmentAddress": {
+        "addressId": 24,
+        "addressRegion": "Lima",
+        "addressProvince": "Lima",
+        "addressDistrict": "San Juan de Miraflores",
+        "addressLine": "Mz. L lt. 12 AAHH Los Tirapiedra",
+        "addressObservations": "Hay perros bravos"
+      },
+      "shipmentReceiver": {
+        "receiverId": 2,
+        "receiverIsCompany": true,
+        "receiverNames": "La Negativa SAC",
+        "receiverIdNumber": "20456325857",
+        "receiverPhone": "016689754",
+        "receiverEmail": "contacto@lanegativa.com.pe",
+        "receiverAddress": [
+          {
+            "addressId": 23,
+            "addressRegion": "Lima",
+            "addressProvince": "Lima",
+            "addressDistrict": "Los Olivos",
+            "addressLine": "Av. Los Olivos 123",
+            "addressObservations": ""
+          },
+          {
+            "addressId": 24,
+            "addressRegion": "Lima",
+            "addressProvince": "Lima",
+            "addressDistrict": "San Juan de Miraflores",
+            "addressLine": "Mz. L lt. 12 AAHH Los Tirapiedra",
+            "addressObservations": "Hay perros bravos"
+          }
+        ],
+        "receiverContactName": "Mantín Gonzales"
+      },
+      "shipmentDeliveryTransporter": {
+        "systemUserId": 3,
+        "systemUserNames": "Mariano Alberto Molina panta",
+        "systemUserIdNumber": "85474546",
+        "systemUserPhone": "975684351",
+        "systemUserPhone2": "",
+        "systemUserEmail": "marianopanta@live.com",
+        "systemUserCreationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserModificationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserStatus": "Activo",
+        "systemUserRole": "Usuario",
+        "systemUserUsername": "marianomolina",
+        "systemUserPassword": "123456"
+      },
+      "shipmentPickUpTransporter": {
+        "systemUserId": 3,
+        "systemUserNames": "Mariano Alberto Molina panta",
+        "systemUserIdNumber": "85474546",
+        "systemUserPhone": "975684351",
+        "systemUserPhone2": "",
+        "systemUserEmail": "marianopanta@live.com",
+        "systemUserCreationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserModificationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserStatus": "Activo",
+        "systemUserRole": "Usuario",
+        "systemUserUsername": "marianomolina",
+        "systemUserPassword": "123456"
+      },
+      "shipmentReceiverUser": {
+        "systemUserId": 3,
+        "systemUserNames": "Mariano Alberto Molina panta",
+        "systemUserIdNumber": "85474546",
+        "systemUserPhone": "975684351",
+        "systemUserPhone2": "",
+        "systemUserEmail": "marianopanta@live.com",
+        "systemUserCreationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserModificationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserStatus": "Activo",
+        "systemUserRole": "Usuario",
+        "systemUserUsername": "marianomolina",
+        "systemUserPassword": "123456"
+      },
+      "shipmentCost": 29.5,
+      "shipmentPhotoUrls": [
+        "ab65781.jpg",
+        "ab65782.jpg",
+        "ab65783.jpg"
+      ],
+      "shipmentObservations": "No se pudo encontrar la dirección",
+      "shipmentStatus": "En Devolución",
+      "shipmentProblems": "Dirección no encontrada",
+      "shipmentCreationDate": "2022-08-18T00:00:00.000Z",
+      "shipmentModificationDate": "2022-08-18T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "shipmentCode": "AB6595-2",
+      "shipmentNumberOfPackages": 2,
+      "shipmentReceptionDate": "2022-08-18T00:00:00.000Z",
+      "shipmentDeliveryDate": "2022-08-17T00:00:00.000Z",
+      "shipmentOnRouteDate": "2022-08-18T00:00:00.000Z",
+      "shipmentOnReturnDate": "2022-08-18T00:00:00.000Z",
+      "shipmentClient": {
+        "clientId": 2,
+        "clientIdNumber": "47855546",
+        "clientIsCompany": false,
+        "clientContactName": "",
+        "clientPickUpAddress": [
+          {
+            "addressId": 29,
+            "addressRegion": "Lima",
+            "addressProvince": "Lima",
+            "addressDistrict": "Miraflores",
+            "addressLine": "Calle Los Fierros Negros 2354",
+            "addressObservations": ""
+          }
+        ],
+        "clientNames": "Niro Peña Nieto",
+        "clientPhone": "987654321",
+        "clientEmail": "penanieto@casablanca.com",
+        "clientCreationDate": "2021-07-10T00:00:00.000Z",
+        "clientModificationDate": "2021-07-10T00:00:00.000Z",
+        "clientStatus": "Activo"
+      },
+      "shipmentAddress": {
+        "addressId": 32,
+        "addressRegion": "Lima",
+        "addressProvince": "Callao",
+        "addressDistrict": "Ventanilla",
+        "addressLine": "MMz R Lt. 36 AAHH Los Pajaritos",
+        "addressObservations": "Casa azul con reja blanca"
+      },
+      "shipmentReceiver": {
+        "receiverId": 7,
+        "receiverIsCompany": true,
+        "receiverNames": "Sombreros Vargas SAC",
+        "receiverIdNumber": "20445687547",
+        "receiverPhone": "015561636",
+        "receiverEmail": "jdiaz@gmail.com",
+        "receiverAddress": [
+          {
+            "addressId": 44,
+            "addressRegion": "Lima",
+            "addressProvince": "Lima",
+            "addressDistrict": "Villa María del Triunfo",
+            "addressLine": "Calle Girasoles Muertos 145",
+            "addressObservations": ""
+          }
+        ],
+        "receiverContactName": "Juancho Patazca Mauri"
+      },
+      "shipmentDeliveryTransporter": {
+        "systemUserId": 3,
+        "systemUserNames": "Mariano Alberto Molina panta",
+        "systemUserIdNumber": "85474546",
+        "systemUserPhone": "975684351",
+        "systemUserPhone2": "",
+        "systemUserEmail": "marianopanta@live.com",
+        "systemUserCreationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserModificationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserStatus": "Activo",
+        "systemUserRole": "Usuario",
+        "systemUserUsername": "marianomolina",
+        "systemUserPassword": "123456"
+      },
+      "shipmentPickUpTransporter": {
+        "systemUserId": 3,
+        "systemUserNames": "Mariano Alberto Molina panta",
+        "systemUserIdNumber": "85474546",
+        "systemUserPhone": "975684351",
+        "systemUserPhone2": "",
+        "systemUserEmail": "marianopanta@live.com",
+        "systemUserCreationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserModificationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserStatus": "Activo",
+        "systemUserRole": "Usuario",
+        "systemUserUsername": "marianomolina",
+        "systemUserPassword": "123456"
+      },
+      "shipmentReceiverUser": {
+        "systemUserId": 3,
+        "systemUserNames": "Mariano Alberto Molina panta",
+        "systemUserIdNumber": "85474546",
+        "systemUserPhone": "975684351",
+        "systemUserPhone2": "",
+        "systemUserEmail": "marianopanta@live.com",
+        "systemUserCreationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserModificationDate": "2021-05-11T00:00:00.000Z",
+        "systemUserStatus": "Activo",
+        "systemUserRole": "Usuario",
+        "systemUserUsername": "marianomolina",
+        "systemUserPassword": "123456"
+      },
+      "shipmentCost": 29.5,
+      "shipmentPhotoUrls": [
+        "ab65778.jpg",
+        "ab65779.jpg",
+        "ab65780.jpg"
+      ],
+      "shipmentObservations": "Ninguna",
+      "shipmentStatus": "Entregado",
+      "shipmentProblems": "Ninguno",
+      "shipmentCreationDate": "2022-08-18T00:00:00.000Z",
+      "shipmentModificationDate": "2022-08-18T00:00:00.000Z"
+    }
+  ]
+}

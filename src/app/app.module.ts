@@ -50,6 +50,7 @@ import {ChipModule} from "primeng/chip";
 import {TagModule} from "primeng/tag";
 import {BreadcrumbModule} from "primeng/breadcrumb";
 import {TimelineModule} from "primeng/timeline";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import {TimelineModule} from "primeng/timeline";
   imports: [
     routing,
     BrowserModule,
+    HttpClientModule,
     CheckboxModule,
     InputTextModule,
     ButtonModule,

@@ -57,7 +57,7 @@
           <td><span class="p-column-title">Distrito</span>{{shipment.district}}</td>
           <td><span class="p-column-title">Fecha</span>{{shipment.date}}</td>
           <td><span class="p-column-title">Estado</span><span>{{shipment.status}}</span></td>
-          <td><span class="p-column-title">Ver Detalles</span><span><a class="p-button p-button-sm" [routerLink]="['/app/shipments', shipment.code]">Detalles</a></span></td>
+          <td><span class="p-column-title">Ver Detalles</span><span><a class="p-button p-button-sm" [routerLink]="['/app/shipments', shipment.id]">Detalles</a></span></td>
         </tr>
       </ng-template>
     </p-table>

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-page-user-shipments-detail',
@@ -7,13 +6,12 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./page-user-shipments-detail.component.css']
 })
 export class PageUserShipmentsDetailComponent implements OnInit {
-  shipmentIdFromRoute: string;
-  constructor(private route: ActivatedRoute) {
-    this.shipmentIdFromRoute = "";
+
+  constructor() {
+
   }
 
   ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    this.shipmentIdFromRoute = String(routeParams.get('shipmentId'));
+
   }
 }
