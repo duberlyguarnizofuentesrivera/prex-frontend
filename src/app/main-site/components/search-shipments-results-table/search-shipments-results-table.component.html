@@ -1,4 +1,5 @@
-<p-card [class]="filtersVisibilityClass" header="Filtros">
+<div>
+<p-card [class]="filtersVisibilityClass + 'mb-2'" header="Filtros">
   <div class="formgrid grid">
     <div class="field col-12 md:col-6">
     <span><label for="float-input-ticket-number">Nro. de ticket: </label>
@@ -18,7 +19,7 @@
 
     <div class="field col-12 md:col-6">
     <span><label for="dropDateFilter">Filtrar Por Fecha: </label>
-    <p-dropdown [(ngModel)]="filterDateFilter" [options]="dateFilters" id="dropDateFilter"
+    <p-dropdown [(ngModel)]="filterDateNumber" [options]="dateFilters" id="dropDateFilter"
                 optionLabel="name"></p-dropdown>
       </span></div>
     <div class="field col-12 md:col-6">
@@ -26,7 +27,8 @@
     </div>
   </div>
 </p-card>
-
+</div>
+<div class="mt-3">
 <p-card>
   <p-table (onLazyLoad)="loadShipments()" [lazy]="true" [loading]="loading" [value]="shipments"
            responsiveLayout="stack">
@@ -58,7 +60,10 @@
           <p-tag *ngIf="shipment.shipmentStatus=='Entregado'" severity="success"
                  value="{{shipment.shipmentStatus}}"></p-tag>
           <p-tag
-            *ngIf="shipment.shipmentStatus=='En Almacén' || shipment.shipmentStatus=='Recepcionado'||shipment.shipmentStatus=='En Reparto'"
+            *ngIf="shipment.shipmentStatus=='Recepcionado'"
+            severity="warning" value="{{shipment.shipmentStatus}}"></p-tag>
+          <p-tag
+            *ngIf="shipment.shipmentStatus=='En Almacén' ||shipment.shipmentStatus=='En Reparto'"
             severity="info" value="{{shipment.shipmentStatus}}"></p-tag>
           <p-tag *ngIf="shipment.shipmentStatus=='Devuelto' || shipment.shipmentStatus=='En Devolución'"
                  severity="danger" value="{{shipment.shipmentStatus}}"></p-tag>
@@ -70,4 +75,4 @@
     </ng-template>
   </p-table>
 </p-card>
-
+</div>

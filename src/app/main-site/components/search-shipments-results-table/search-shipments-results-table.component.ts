@@ -14,7 +14,7 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
   shipmentStatus: any[];
   dateFilters: any[];
   filterShipmentStatus: string;
-  filterDateFilter: any;
+  filterDateNumber: any;
   loading: boolean = false;
   filterTicketString: string = "";
   filterLocationString: string = "";
@@ -24,9 +24,11 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
 
   constructor(private shipmentService: ShipmentServiceService) {
     this.shipmentStatus = Object.values(ShipmentStatus);
+    this.shipmentStatus.unshift("Todos");
+    console.log(this.shipmentStatus);
     this.shipments = [];
-
     this.filterShipmentStatus = "";
+    this.filterDateNumber = {id: 1, name: "Todos"};
 
     this.dateFilters = [
       {id: 1, name: "Todos"},
@@ -47,7 +49,11 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
   }
   loadShipments() {
     this.loading = true;
-    this.shipmentService.getShipments(this.filterTicketString, this.filterShipmentStatus, this.filterLocationString).subscribe(data=> {
+    if(this.filterShipmentStatus == "Todos"){
+      this.filterShipmentStatus = "";
+    }
+    console.log(this.filterDateNumber);
+    this.shipmentService.getShipments(this.filterTicketString, this.filterShipmentStatus, this.filterLocationString, this.filterDateNumber.id).subscribe(data=> {
       this.shipments = data;
       this.loading = false;
     });
