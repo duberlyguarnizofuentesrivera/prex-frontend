@@ -51,6 +51,8 @@ import {TagModule} from "primeng/tag";
 import {BreadcrumbModule} from "primeng/breadcrumb";
 import {TimelineModule} from "primeng/timeline";
 import {HttpClientModule} from "@angular/common/http";
+import {ImageModule} from "primeng/image";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -96,9 +98,12 @@ import {HttpClientModule} from "@angular/common/http";
     ChipModule,
     TagModule,
     BreadcrumbModule,
-    TimelineModule
+    TimelineModule,
+    ImageModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

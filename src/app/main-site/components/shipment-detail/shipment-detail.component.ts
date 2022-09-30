@@ -4,6 +4,7 @@ import {ShipmentServiceService} from "../../services/shipment-service.service";
 import {MenuItem, PrimeIcons} from "primeng/api";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-shipment-detail',
@@ -16,7 +17,7 @@ export class ShipmentDetailComponent implements OnInit {
   address: MenuItem[];
   events: any[];
 
-  constructor(private route: ActivatedRoute, private shipmentService: ShipmentServiceService) {
+  constructor(private route: ActivatedRoute, private shipmentService: ShipmentServiceService, private datePipe: DatePipe) {
     const routeParams = this.route.snapshot.paramMap;
     this.shipmentId = Number(routeParams.get('shipmentId'));
     console.log("Ruta:")
@@ -24,7 +25,6 @@ export class ShipmentDetailComponent implements OnInit {
     this.events = [];
     this.address = [];
     this.shipmentDetail = this.shipmentService.getShipment(this.shipmentId);
-    console.log(this.shipmentDetail);
     this.shipmentDetail.subscribe((data) => {
       this.address = [{label: data.shipmentAddress.addressRegion},
         {label: data.shipmentAddress.addressProvince},
@@ -33,7 +33,7 @@ export class ShipmentDetailComponent implements OnInit {
       this.events = [
         {
           status: 'Recepcionado',
-          date: data.shipmentCreationDate.toLocaleString(),
+          date: this.datePipe.transform(data.shipmentCreationDate, 'dd/MM/yy'),
           icon: PrimeIcons.CALENDAR,
           color: '#f06bac'
         }
@@ -41,7 +41,7 @@ export class ShipmentDetailComponent implements OnInit {
       if (data.shipmentReceptionDate != undefined) {
         this.events.push({
           status: 'En almacén',
-          date: data.shipmentReceptionDate.toLocaleString(),
+          date: this.datePipe.transform(data.shipmentReceptionDate, 'dd/MM/yy'),
           icon: PrimeIcons.BOX,
           color: '#8183f4'
         })
@@ -49,15 +49,31 @@ export class ShipmentDetailComponent implements OnInit {
       if (data.shipmentOnRouteDate != undefined) {
         this.events.push({
           status: 'En reparto',
-          date: data.shipmentOnRouteDate.toLocaleString(),
+          date: this.datePipe.transform(data.shipmentOnRouteDate, 'dd/MM/yy'),
           icon: PrimeIcons.CAR,
           color: '#35c4dc'
+        })
+      }
+      if (data.shipmentOnReturnDate != undefined) {
+        this.events.push({
+          status: 'En Devolución',
+          date: this.datePipe.transform(data.shipmentOnReturnDate, 'dd/MM/yy'),
+          icon: PrimeIcons.CAR,
+          color: '#ff6259'
+        })
+      }
+      if (data.shipmentReturnDate != undefined) {
+        this.events.push({
+          status: 'Devuelto',
+          date: this.datePipe.transform(data.shipmentReturnDate, 'dd/MM/yy'),
+          icon: PrimeIcons.EXCLAMATION_CIRCLE,
+          color: '#ff6259'
         })
       }
       if (data.shipmentDeliveryDate != undefined) {
         this.events.push({
           status: 'Entregado',
-          date: data.shipmentDeliveryDate.toLocaleString(),
+          date: this.datePipe.transform(data.shipmentDeliveryDate, 'dd/MM/yy'),
           icon: PrimeIcons.CHECK,
           color: '#35dc35'
         })

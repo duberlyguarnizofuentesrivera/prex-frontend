@@ -6,12 +6,12 @@ export interface SystemUser {
   systemUserNames:string;
   systemUserIdNumber:string;
   systemUserPhone:string;
-  systemUserPhone2:string;
+  systemUserPhone2?:string;
   systemUserEmail:string;
   systemUserCreationDate:Date;
   systemUserModificationDate:Date;
   systemUserStatus:UserStatus;
   systemUserRole:UserRole;
   systemUserUsername:string;
-  systemUserPassword:string;
+  systemUserPassword?:string;
 }

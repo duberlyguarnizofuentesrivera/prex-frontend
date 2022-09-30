@@ -1,65 +1,73 @@
-
-  <p-card header="Filtros" [class]="filtersVisibilityClass">
-    <div class="formgrid grid">
-      <div class="field col-12 md:col-6">
-    <span><label for="float-input-ticket-number">Nro. de ticket </label>
-    <input id="float-input-ticket-number" pInputText type="text">
+<p-card [class]="filtersVisibilityClass" header="Filtros">
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+    <span><label for="float-input-ticket-number">Nro. de ticket: </label>
+    <input [(ngModel)]="filterTicketString" id="float-input-ticket-number" pInputText type="text">
       </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="float-input-location">Localización </label>
-    <input id="float-input-location" pInputText type="text">
+    <div class="field col-12 md:col-6">
+    <span><label for="float-input-location">Distrito: </label>
+    <input [(ngModel)]="filterLocationString" id="float-input-location" pInputText type="text">
       </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="dropShipmentStatus">Estado </label>
-    <p-dropdown [(ngModel)]="selectedShipmentStatus" [options]="shipmentStatus" id="dropShipmentStatus"></p-dropdown>
+    <div class="field col-12 md:col-6">
+    <span><label for="dropShipmentStatus">Estado: </label>
+    <p-dropdown [(ngModel)]="filterShipmentStatus" [options]="shipmentStatus" id="dropShipmentStatus"></p-dropdown>
       </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="dropClientType">Tipo de cliente </label>
-    <p-dropdown [(ngModel)]="selectedClientType" [options]="clientType" id="dropClientType"></p-dropdown>
-      </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="dropDateFilter">Filtrar Por Fecha </label>
-    <p-dropdown [(ngModel)]="selectedDateFilter" [options]="dateFilters" id="dropDateFilter"
+    <div class="field col-12 md:col-6">
+    <span><label for="dropDateFilter">Filtrar Por Fecha: </label>
+    <p-dropdown [(ngModel)]="filterDateFilter" [options]="dateFilters" id="dropDateFilter"
                 optionLabel="name"></p-dropdown>
       </span></div>
-
+    <div class="field col-12 md:col-6">
+      <p-button (click)="loadShipments()" label="Filtrar"></p-button>
     </div>
-  </p-card>
+  </div>
+</p-card>
 
-
-  <p-card>
-    <p-table [value]="shipments" responsiveLayout="stack">
-      <ng-template pTemplate="caption">
-        Resultados
-      </ng-template>
-      <ng-template pTemplate="header">
-        <tr>
-          <th scope="col">Ticket</th>
-          <th scope="col">Cod. Envío</th>
-          <th scope="col">Destinatario</th>
-          <th scope="col">Provincia</th>
-          <th scope="col">Distrito</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Ver Detalles</th>
-        </tr>
-      </ng-template>
-      <ng-template let-shipment pTemplate="body">
-        <tr>
-          <td><span class="p-column-title">Ticket</span>{{shipment.ticket}}</td>
-          <td><span class="p-column-title">Cód. Envío</span>{{shipment.code}}</td>
-          <td><span class="p-column-title">Destinatario</span>{{shipment.destination}}</td>
-          <td><span class="p-column-title">Provincia</span>{{shipment.province}}</td>
-          <td><span class="p-column-title">Distrito</span>{{shipment.district}}</td>
-          <td><span class="p-column-title">Fecha</span>{{shipment.date}}</td>
-          <td><span class="p-column-title">Estado</span><span>{{shipment.status}}</span></td>
-          <td><span class="p-column-title">Ver Detalles</span><span><a class="p-button p-button-sm" [routerLink]="['/app/shipments', shipment.id]">Detalles</a></span></td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-card>
+<p-card>
+  <p-table (onLazyLoad)="loadShipments()" [lazy]="true" [loading]="loading" [value]="shipments"
+           responsiveLayout="stack">
+    <ng-template pTemplate="caption">
+      Resultados
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col">Cod. Envío</th>
+        <th scope="col">Destinatario</th>
+        <th scope="col">Región</th>
+        <th scope="col">Provincia</th>
+        <th scope="col">Distrito</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Ver Detalles</th>
+      </tr>
+    </ng-template>
+    <ng-template let-shipment pTemplate="body">
+      <tr>
+        <td><span class="p-column-title">Cód. Envío</span>{{shipment.shipmentCode}}</td>
+        <td><span class="p-column-title">Destinatario</span>{{shipment.shipmentReceiver.receiverNames}}</td>
+        <td><span class="p-column-title">Región</span>{{shipment.shipmentAddress.addressRegion}}</td>
+        <td><span class="p-column-title">Provincia</span>{{shipment.shipmentAddress.addressProvince}}</td>
+        <td><span class="p-column-title">Distrito</span>{{shipment.shipmentAddress.addressDistrict}}</td>
+        <td><span class="p-column-title">Fecha</span>{{shipment.shipmentReceptionDate | date:'dd/MM/yy'}}</td>
+        <td>
+          <span class="p-column-title">Estado</span>
+          <p-tag *ngIf="shipment.shipmentStatus=='Entregado'" severity="success"
+                 value="{{shipment.shipmentStatus}}"></p-tag>
+          <p-tag
+            *ngIf="shipment.shipmentStatus=='En Almacén' || shipment.shipmentStatus=='Recepcionado'||shipment.shipmentStatus=='En Reparto'"
+            severity="info" value="{{shipment.shipmentStatus}}"></p-tag>
+          <p-tag *ngIf="shipment.shipmentStatus=='Devuelto' || shipment.shipmentStatus=='En Devolución'"
+                 severity="danger" value="{{shipment.shipmentStatus}}"></p-tag>
+        </td>
+        <td><span class="p-column-title">Ver Detalles</span><span><a [routerLink]="['/app/shipments', shipment.shipmentId]"
+                                                                     class="p-button p-button-sm">Detalles</a></span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
 

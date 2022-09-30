@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ShipmentStatus} from "../../enums/ShipmentStatus";
-import {ClientType} from "../../enums/ClientType";
+import {Shipment} from "../../models/Shipment";
+import {ShipmentServiceService} from "../../services/shipment-service.service";
 
 @Component({
   selector: 'app-search-shipments-results-table',
@@ -8,28 +9,24 @@ import {ClientType} from "../../enums/ClientType";
   styleUrls: ['./search-shipments-results-table.component.css']
 })
 export class SearchShipmentsResultsTableComponent implements OnInit {
-  shipments: any[];
+  shipments: Shipment[];
   filtersVisibilityClass: string = "hidden";
   shipmentStatus: any[];
   dateFilters: any[];
-  clientType: any[];
-  selectedShipmentStatus: string;
-  selectedClientType: any;
-  selectedDateFilter: any;
+  filterShipmentStatus: string;
+  filterDateFilter: any;
+  loading: boolean = false;
+  filterTicketString: string = "";
+  filterLocationString: string = "";
 
   @Input()
   showFilters: boolean = false;
 
-  constructor() {
+  constructor(private shipmentService: ShipmentServiceService) {
     this.shipmentStatus = Object.values(ShipmentStatus);
-    console.log("shipmentStatus:");
-    console.log(this.shipmentStatus);
-    console.log("values");
-    console.log(Object.values(ShipmentStatus));
-    console.log("keys");
-    console.log(Object.keys(ShipmentStatus));
+    this.shipments = [];
 
-    this.selectedShipmentStatus = ShipmentStatus.RECEIVED;
+    this.filterShipmentStatus = "";
 
     this.dateFilters = [
       {id: 1, name: "Todos"},
@@ -38,47 +35,21 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
       {id: 4, name: "Últimos 30 días"},
       {id: 5, name: "Más de 30 días"}
     ];
-    this.clientType = Object.values(ClientType);
 
-    this.shipments = [{
-      "id": 1,
-      "ticket": "AB-6578",
-      "code": "AB-6578-1",
-      "destination": "Juan Manuel Perez De Cuellar",
-      "province": "Lima",
-      "district": "Los Olivos",
-      "date": "2020-01-01",
-      "status": "Recibido",
-      "photos_url": ["ab65781.jpg", "ab65782.jpg", "ab65783.jpg"]
-    },
-      {
-        "id": 2,
-        "ticket": "AB-6578",
-        "code": "AB-6578-2",
-        "destination": "Luz Maria Anda",
-        "province": "Lima",
-        "district": "Villa El Salvador",
-        "date": "2020-01-01",
-        "status": "Recibido",
-        "photos_url": ["ab65781.jpg"]
-      },
-      {
-        "id": 5,
-        "ticket": "AB-6592",
-        "code": "AB-6592-1",
-        "destination": "Monique Pardo Ugarteche",
-        "province": "Barranca",
-        "district": "Barranca",
-        "date": "2020-02-01",
-        "status": "En camino"
-      }]
   }
 
   ngOnInit(): void {
     if (this.showFilters) {
       this.filtersVisibilityClass = 'block';
     }
+    this.loading = true;
 
   }
-
+  loadShipments() {
+    this.loading = true;
+    this.shipmentService.getShipments(this.filterTicketString, this.filterShipmentStatus, this.filterLocationString).subscribe(data=> {
+      this.shipments = data;
+      this.loading = false;
+    });
+  }
 }

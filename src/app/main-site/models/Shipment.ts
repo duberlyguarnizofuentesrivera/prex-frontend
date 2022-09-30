@@ -5,7 +5,6 @@ import {Receiver} from "./Receiver";
 import {SystemUser} from "./SystemUser";
 import {Address} from "./Address";
 
-
 export interface Shipment {
   shipmentId:number;
   shipmentCode:string;

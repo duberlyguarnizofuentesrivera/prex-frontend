@@ -6,15 +6,23 @@
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
         <div class="text-500 w-6 md:w-2 font-medium">Cliente</div>
         <div
-          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentClient.clientNames}}</div>
+          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+          <i *ngIf="!shipmentDetail.shipmentClient.clientIsCompany" class="pi pi-user"></i>
+          <i *ngIf="shipmentDetail.shipmentClient.clientIsCompany"class="pi pi-building"></i>
+          &nbsp;{{shipmentDetail.shipmentClient.clientNames}} ({{shipmentDetail.shipmentClient.clientIdNumber}})
+        </div>
         <div class="w-6 md:w-2 flex justify-content-end">
           <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
         </div>
       </li>
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-        <div class="text-500 w-6 md:w-2 font-medium">Documento</div>
+        <div class="text-500 w-6 md:w-2 font-medium">Destinatario</div>
         <div
-          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentClient.clientIdNumber}}</div>
+          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+          <i *ngIf="!shipmentDetail.shipmentReceiver.receiverIsCompany" class="pi pi-user"></i>
+          <i *ngIf="shipmentDetail.shipmentReceiver.receiverIsCompany" class="pi pi-building"></i>
+          &nbsp;{{shipmentDetail.shipmentReceiver.receiverNames}} ({{shipmentDetail.shipmentReceiver.receiverIdNumber}})
+        </div>
         <div class="w-6 md:w-2 flex justify-content-end">
           <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
         </div>
@@ -39,9 +47,13 @@
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
         <div class="text-500 w-6 md:w-2 font-medium">Estado actual</div>
         <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
-          <p-tag *ngIf="shipmentDetail.shipmentStatus=='Entregado'" severity="success" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
-          <p-tag *ngIf="shipmentDetail.shipmentStatus=='En Almacén' || shipmentDetail.shipmentStatus=='Recepcionado'||shipmentDetail.shipmentStatus=='En Reparto'" severity="info" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
-          <p-tag *ngIf="shipmentDetail.shipmentStatus=='Devuelto' || shipmentDetail.shipmentStatus=='En Devolución'" severity="danger" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
+          <p-tag *ngIf="shipmentDetail.shipmentStatus=='Entregado'" severity="success"
+                 value="{{shipmentDetail.shipmentStatus}}"></p-tag>
+          <p-tag
+            *ngIf="shipmentDetail.shipmentStatus=='En Almacén' || shipmentDetail.shipmentStatus=='Recepcionado'||shipmentDetail.shipmentStatus=='En Reparto'"
+            severity="info" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
+          <p-tag *ngIf="shipmentDetail.shipmentStatus=='Devuelto' || shipmentDetail.shipmentStatus=='En Devolución'"
+                 severity="danger" value="{{shipmentDetail.shipmentStatus}}"></p-tag>
         </div>
         <div class="w-6 md:w-2 flex justify-content-end">
           <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
@@ -50,7 +62,7 @@
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
         <div class="text-500 w-6 md:w-2 font-medium">Transportista asignado</div>
         <div
-          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentDeliveryTransporter.systemUserNames}}</div>
+          class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{shipmentDetail.shipmentDeliveryTransporter == null ? 'No Existe' : ' asignado'}}</div>
         <div class="w-6 md:w-2 flex justify-content-end">
           <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
         </div>
@@ -65,8 +77,9 @@
       <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
         <div class="text-500 w-6 md:w-2 font-medium">Problemas con la entrega</div>
         <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
-            <p-tag *ngIf="shipmentDetail.shipmentProblems=='Ninguno'" severity="success" value="{{shipmentDetail.shipmentProblems}}"></p-tag>
-            <p-tag *ngIf="shipmentDetail.shipmentProblems!='Ninguno'" severity="danger" value="{{shipmentDetail.shipmentProblems}}"></p-tag>
+          <p-tag *ngIf="shipmentDetail.shipmentProblems=='Ninguno'" severity="success" value="Ninguno"></p-tag>
+          <p-tag *ngIf="shipmentDetail.shipmentProblems!='Ninguno'" severity="danger"
+                 value="{{shipmentDetail.shipmentProblems}}"></p-tag>
         </div>
         <div class="w-6 md:w-2 flex justify-content-end">
           <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
@@ -75,7 +88,18 @@
     </ul>
 
   </div>
-
+  <div>
+    <p-card class="w-6 md:w-2 text-center">
+      <div *ngIf="shipmentDetail.shipmentPhotoUrls.length!=0; else noPhotosDiv" >
+        <ng-container *ngFor="let photo of shipmentDetail.shipmentPhotoUrls">
+          <p-image [preview]="true" alt="Image" src="{{photo}}" width="200"></p-image>
+        </ng-container>
+      </div>
+      <ng-template #noPhotosDiv>
+        <p>Este envío no tiene fotos</p>
+      </ng-template>
+    </p-card>
+  </div>
   <p-card class="w-6 md:w-2">
     <p-timeline [value]="events" layout="vertical">
       <ng-template let-event pTemplate="opposite">
