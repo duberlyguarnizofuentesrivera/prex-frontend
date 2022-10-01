@@ -1,20 +1,24 @@
 <div>
   <p-card header="Filtros">
     <div class="formgrid grid">
-      <div class="field col-12 md:col-6">
-    <span><label for="float-input-client-name">Nombres </label>
-    <input id="float-input-client-name" pInputText type="text">
+      <div class="field col-12 md:col-4">
+    <span><label for="float-input-client-name">Nombres: </label>
+    <input [(ngModel)]="filterNamesString" id="float-input-client-name" pInputText type="text">
       </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="dropClientType">Estado </label>
-    <p-dropdown [(ngModel)]="selectedClientType" [options]="clientType" id="dropClientType"></p-dropdown>
+      <div class="field col-12 md:col-4">
+    <span><label for="dropClientType">Tipo de cliente: </label>
+    <p-dropdown [(ngModel)]="filterClientType" [options]="clientType" id="dropClientType"></p-dropdown>
       </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="dropStatusType">Tipo de cliente </label>
-    <p-dropdown [(ngModel)]="selectedStatusType" [options]="statusType" id="dropStatusType"></p-dropdown>
+      <div class="field col-12 md:col-4">
+    <span><label for="dropStatusType">Estado: </label>
+    <p-dropdown [(ngModel)]="filterClientStatus" [options]="statusType" id="dropStatusType"></p-dropdown>
       </span></div>
+
+      <div class="field col-12 md:col-4">
+      <p-button label="Filtrar" (click)="loadClients()"></p-button>
+      </div>
 
     </div>
   </p-card>
@@ -22,7 +26,7 @@
 </div>
 <div class="pt-3">
   <p-card>
-    <p-table [value]="clients" responsiveLayout="stack">
+    <p-table [value]="clients" (onLazyLoad)="loadClients()" [loading]="loading" [lazy]="true" responsiveLayout="stack">
       <ng-template pTemplate="caption">
         Resultados
       </ng-template>
@@ -37,11 +41,23 @@
       </ng-template>
       <ng-template let-client pTemplate="body">
         <tr>
-          <td><span class="p-column-title">Documento</span>{{client.idNumber}}</td>
-          <td><span class="p-column-title">Nombres</span>{{client.name}}</td>
-          <td><span class="p-column-title">Teléfono</span>{{client.phone}}</td>
-          <td><span class="p-column-title">Estado</span>{{client.status}}</td>
-          <td><span class="p-column-title">Ver Detalles</span><span><a href="#">Detalles</a></span></td>
+          <td><span class="p-column-title">Documento</span>
+            <i *ngIf="!client.clientIsCompany" class="pi pi-user"></i>
+            <i *ngIf="client.clientIsCompany" class="pi pi-building"></i>
+            &nbsp;{{client.clientIdNumber}}
+          </td>
+          <td><span class="p-column-title">Nombres</span>{{client.clientNames}}</td>
+          <td><span class="p-column-title">Teléfono</span>{{client.clientPhone}}</td>
+          <td>
+            <span class="p-column-title">Estado</span><p-tag
+            *ngIf="client.clientStatus=='Activo'"
+            severity="success" value="{{client.clientStatus}}"></p-tag>
+            <p-tag
+              *ngIf="client.clientStatus=='Inactivo'"
+              severity="danger" value="{{client.clientStatus}}"></p-tag>
+          </td>
+          <td><span class="p-column-title">Ver Detalles</span><span><a [routerLink]="['/app/clients', client.clientId]"
+                                                                       class="p-button p-button-sm">Detalles</a></span></td>
         </tr>
       </ng-template>
     </p-table>

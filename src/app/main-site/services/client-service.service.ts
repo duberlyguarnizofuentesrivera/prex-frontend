@@ -1,30 +1,51 @@
 import {Injectable} from '@angular/core';
 import {Client} from "../models/Client";
-import {UserStatus} from "../enums/UserStatus";
-import {AddressServiceService} from "./address-service.service";
+import {HttpClient} from "@angular/common/http";
+import {catchError, Observable, retry, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientServiceService {
 
-  constructor(private addressService:AddressServiceService) { }
-  getTestClientDetail(): Client {
-    return{
-      clientId:2,
-      clientIdNumber:"43558020",
-      clientIsCompany:false,
-      clientContactName:"",
-      clientPickUpAddress:this.addressService.getReceiverAddresses(2),
-      clientNames:"Johana María Valverde Perez",
-      clientPhone:"987654321",
-      clientEmail:"johanavp@gmail.com",
-      clientCreationDate:new Date("2021-07-10"),
-      clientModificationDate:new Date("2021-07-10"),
-      clientStatus:UserStatus.ACTIVE,
-    }
+  constructor(private http: HttpClient) {
   }
-  getClientDetail(clientIdNumber: number): Client {
-    return this.getTestClientDetail();
+
+  getClient(clientIdNumber: number): Observable<Client> {
+    return this.http.get<Client>('http://localhost:3000/clients/' + clientIdNumber).pipe(retry(1), catchError(this.handleError));
+  }
+
+  getClients(name: string, status: string, type: string): Observable<Client[]> {
+    let nameString = "";
+    let statusString = "";
+    let typeString = "";
+    if(name != null && name != undefined && name != ""){
+      nameString = "&clientNames_like=" + name;
+    }
+    if(status != null && status != undefined && status != "" && status!="Todos"){
+      statusString = "&clientStatus=" + status;
+    }
+    if(type != null && type != undefined && type != "" && type!="Todos"){
+      if(type == "Natural"){
+      typeString = "&clientIsCompany=false" ;
+      }else{
+        typeString = "&clientIsCompany=true" ;
+      }
+    }
+    const url = 'http://localhost:3000/clients/?' + nameString + statusString + typeString;
+    return this.http.get<Client[]>(url ).pipe(retry(1), catchError(this.handleError));
+  }
+
+  handleError(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Código de error: ${error.status}\nMensaje: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(() => {
+      return errorMessage;
+    });
   }
 }

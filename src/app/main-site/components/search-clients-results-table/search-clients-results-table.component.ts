@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserStatus} from "../../enums/UserStatus";
 import {ClientType} from "../../enums/ClientType";
+import {Client} from "../../models/Client";
+import {ClientServiceService} from "../../services/client-service.service";
 
 @Component({
   selector: 'app-search-clients-results-table',
@@ -8,28 +10,41 @@ import {ClientType} from "../../enums/ClientType";
   styleUrls: ['./search-clients-results-table.component.css']
 })
 export class SearchClientsResultsTableComponent implements OnInit {
+  loading: boolean = false;
+  clients: Client[] = [];
+  filterClientStatus: string;
+  filterClientType: string;
+  filterNamesString: string = "";
+  clientType: string[];
+  statusType: string[];
 
-  clients:any[];
-  selectedClient:any;
-  selectedStatusType:any;
-  selectedClientType:any;
-  clientType:string[];
-  statusType:string[];
-  constructor() {
-    this.selectedClient = "1";
-    this.selectedStatusType = "1";
-    this.selectedClientType = "1";
-    this.clients=[
-      {id:1, idNumber:'20658955427', name:'La Solucionadora SAC', phone:'015689874', status:UserStatus.ACTIVE},
-      {id:2, idNumber:'45826654', name:'Pedrito Sanchez Rosario', phone:'987654321', status:UserStatus.ACTIVE},
-      {id:3, idNumber:'20665895424', name:'Inversiones Dugleisy Chamancia', phone:'976854325', status:UserStatus.ACTIVE},
-      {id:4, idNumber:'72689545', name:'Rosalía Bailamucho Fiestoncia', phone:'963985741', status:UserStatus.INACTIVE},
-    ]
+  constructor(private clientService: ClientServiceService) {
+    this.filterClientStatus = "Todos";
+    this.filterClientType = "Todos";
+    this.filterNamesString = "";
     this.statusType = Object.values(UserStatus);
+    this.statusType.unshift("Todos");
     this.clientType = Object.values(ClientType);
+    this.clientType.unshift("Todos");
+
   }
 
   ngOnInit(): void {
+  }
+
+  loadClients() {
+    this.loading = true;
+    if (this.filterClientStatus == "Todos") {
+      this.filterClientStatus = "";
+    }
+    if (this.filterClientType == "Todos") {
+      this.filterClientType = "";
+    }
+
+    this.clientService.getClients(this.filterNamesString, this.filterClientStatus, this.filterClientType).subscribe(data => {
+      this.clients = data;
+      this.loading = false;
+    });
   }
 
 }
