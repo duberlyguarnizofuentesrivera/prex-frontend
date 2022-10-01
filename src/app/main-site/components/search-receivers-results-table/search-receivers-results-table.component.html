@@ -1,20 +1,19 @@
 <div>
   <p-card header="Filtros">
     <div class="formgrid grid">
-      <div class="field col-12 md:col-6">
-    <span><label for="float-input-client-name">Nombres </label>
-    <input id="float-input-client-name" pInputText type="text">
+      <div class="field col-12 md:col-4">
+    <span><label for="float-input-client-name">Nombres: </label>
+    <input [(ngModel)]="filterNamesString" id="float-input-client-name" pInputText type="text">
       </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="dropClientType">Estado </label>
-    <p-dropdown [(ngModel)]="selectedReceiverType" [options]="receiverType" id="dropClientType"></p-dropdown>
+      <div class="field col-12 md:col-4">
+    <span><label for="dropClientType">Tipo de cliente: </label>
+    <p-dropdown [(ngModel)]="filterReceiverType" [options]="receiverType" id="dropClientType"></p-dropdown>
       </span></div>
 
-      <div class="field col-12 md:col-6">
-    <span><label for="dropStatusType">Tipo de cliente </label>
-    <p-dropdown [(ngModel)]="selectedStatusType" [options]="statusType" id="dropStatusType"></p-dropdown>
-      </span></div>
+      <div class="field col-12 md:col-4">
+        <p-button (click)="loadReceivers()" label="Filtrar"></p-button>
+      </div>
 
     </div>
   </p-card>
@@ -22,7 +21,8 @@
 </div>
 <div class="pt-3">
   <p-card>
-    <p-table [value]="receivers" responsiveLayout="stack">
+    <p-table (onLazyLoad)="loadReceivers()" [lazy]="true" [loading]="loading" [value]="receivers"
+             responsiveLayout="stack">
       <ng-template pTemplate="caption">
         Resultados
       </ng-template>
@@ -31,21 +31,27 @@
           <th scope="col">Documento</th>
           <th scope="col">Nombres</th>
           <th scope="col">Teléfono</th>
-          <th scope="col">Región</th>
-          <th scope="col">Provincia</th>
-          <th scope="col">Distrito</th>
+          <th scope="col">Email</th>
+          <th scope="col">Número de direcciones</th>
           <th scope="col">Detalles</th>
         </tr>
       </ng-template>
       <ng-template let-receiver pTemplate="body">
         <tr>
-          <td><span class="p-column-title">Documento</span>{{receiver.idNumber}}</td>
-          <td><span class="p-column-title">Nombres</span>{{receiver.name}}</td>
-          <td><span class="p-column-title">Teléfono</span>{{receiver.phone}}</td>
-          <td><span class="p-column-title">Región</span>{{receiver.region}}</td>
-          <td><span class="p-column-title">Provincia</span>{{receiver.province}}</td>
-          <td><span class="p-column-title">Distrito</span>{{receiver.district}}</td>
-          <td><span class="p-column-title">Ver Detalles</span><span><a href="#">Detalles</a></span></td>
+          <td><span class="p-column-title">Documento</span>
+            <i *ngIf="!receiver.receiverIsCompany" class="pi pi-user"></i>
+            <i *ngIf="receiver.receiverIsCompany" class="pi pi-building"></i>
+            &nbsp;{{receiver.receiverIdNumber}}
+          </td>
+          <td><span class="p-column-title">Nombres</span>{{receiver.receiverNames}}</td>
+          <td><span class="p-column-title">Teléfono</span>{{receiver.receiverPhone}}</td>
+          <td><span class="p-column-title">Email</span>{{receiver.receiverEmail}}</td>
+          <td><span class="p-column-title">Numero de direcciones</span>
+          {{receiver.receiverAddress.length}}
+          </td>
+          <td><span class="p-column-title">Ver Detalles</span><span><a
+            [routerLink]="['/app/receivers', receiver.receiverId]"
+            class="p-button p-button-sm">Detalles</a></span></td>
         </tr>
       </ng-template>
     </p-table>

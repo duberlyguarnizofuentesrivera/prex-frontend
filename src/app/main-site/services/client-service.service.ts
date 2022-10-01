@@ -19,13 +19,13 @@ export class ClientServiceService {
     let nameString = "";
     let statusString = "";
     let typeString = "";
-    if(name != null && name != undefined && name != ""){
+    if(name != null && name != ""){
       nameString = "&clientNames_like=" + name;
     }
-    if(status != null && status != undefined && status != "" && status!="Todos"){
+    if(status != null && status != "" && status!="Todos"){
       statusString = "&clientStatus=" + status;
     }
-    if(type != null && type != undefined && type != "" && type!="Todos"){
+    if(type != null && type != "" && type!="Todos"){
       if(type == "Natural"){
       typeString = "&clientIsCompany=false" ;
       }else{
