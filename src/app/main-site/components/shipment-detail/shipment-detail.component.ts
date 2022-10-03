@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Shipment} from "../../models/Shipment";
-import {ShipmentServiceService} from "../../services/shipment-service.service";
+import {ShipmentService} from "../../services/shipment-service.service";
 import {MenuItem, PrimeIcons} from "primeng/api";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
@@ -17,7 +17,7 @@ export class ShipmentDetailComponent implements OnInit {
   address: MenuItem[];
   events: any[];
 
-  constructor(private route: ActivatedRoute, private shipmentService: ShipmentServiceService, private datePipe: DatePipe) {
+  constructor(private route: ActivatedRoute, private shipmentService: ShipmentService, private datePipe: DatePipe) {
     const routeParams = this.route.snapshot.paramMap;
     this.shipmentId = Number(routeParams.get('shipmentId'));
     console.log("Ruta:")

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserStatus} from "../../enums/UserStatus";
 import {Receiver} from "../../models/Receiver";
-import {ReceiverServiceService} from "../../services/receiver-service.service";
+import {ReceiverService} from "../../services/receiver-service.service";
 import {ClientType} from "../../enums/ClientType";
 
 @Component({
@@ -18,7 +18,7 @@ export class SearchReceiversResultsTableComponent implements OnInit {
   statusType: string[];
   receiverType: string[];
 
-  constructor(private receiverService: ReceiverServiceService) {
+  constructor(private receiverService: ReceiverService) {
     this.filterReceiverStatus = "Todos";
     this.filterReceiverType = "Todos";
     this.filterNamesString = "";

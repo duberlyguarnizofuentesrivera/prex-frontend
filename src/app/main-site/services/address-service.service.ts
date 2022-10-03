@@ -4,7 +4,7 @@ import {Address} from "../models/Address";
 @Injectable({
   providedIn: 'root'
 })
-export class AddressServiceService {
+export class AddressService {
 
   constructor() { }
   getTestReceiverAddresses(): Address[] {

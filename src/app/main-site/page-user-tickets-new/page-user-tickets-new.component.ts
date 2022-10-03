@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LocationServiceService} from "../services/location-service.service";
+import {LocationService} from "../services/location-service.service";
 
 @Component({
   selector: 'app-page-user-tickets-new',
@@ -16,7 +16,7 @@ export class PageUserTicketsNewComponent implements OnInit {
   isPickUp: boolean;
   validCitySelection: boolean;
 
-  constructor(private locationService: LocationServiceService) {
+  constructor(private locationService: LocationService) {
     this.region = '';
     this.province = '';
     this.district = '';

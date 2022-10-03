@@ -6,7 +6,7 @@ import {UserRole} from "../enums/UserRole";
 @Injectable({
   providedIn: 'root'
 })
-export class SystemUserServiceService {
+export class SystemUserService {
 
   constructor() {
   }

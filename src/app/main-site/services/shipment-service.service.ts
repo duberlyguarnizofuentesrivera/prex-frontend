@@ -6,7 +6,7 @@ import {catchError, map, Observable, retry, throwError} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ShipmentServiceService {
+export class ShipmentService {
   result: Shipment[];
   httpOptions = {
     headers: new HttpHeaders({

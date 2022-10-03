@@ -14,6 +14,6 @@ export class MainHeaderComponent implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then(r => console.log(r));
   }
 }

@@ -18,11 +18,7 @@ export class PageSearchByCodeComponent implements OnInit {
   }
 
   checkEnableButton() {
-    if (this.inputCode.length === 6) {
-      this.buttonDisabled = false;
-    } else {
-      this.buttonDisabled = true;
-    }
+    this.buttonDisabled = this.inputCode.length !== 6;
   }
 
   validateCode() {

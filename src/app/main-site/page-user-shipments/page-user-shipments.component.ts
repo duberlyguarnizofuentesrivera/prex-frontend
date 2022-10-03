@@ -6,7 +6,6 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./page-user-shipments.component.css']
 })
 export class PageUserShipmentsComponent implements OnInit {
- filtersVisibility:boolean = true;
   constructor() { }
 
   ngOnInit(): void {

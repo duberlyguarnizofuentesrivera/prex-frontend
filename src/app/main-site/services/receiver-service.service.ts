@@ -6,7 +6,7 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ReceiverServiceService {
+export class ReceiverService {
 
   constructor(private http: HttpClient) {
   }

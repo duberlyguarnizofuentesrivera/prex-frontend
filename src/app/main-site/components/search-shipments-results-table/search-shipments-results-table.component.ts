@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ShipmentStatus} from "../../enums/ShipmentStatus";
 import {Shipment} from "../../models/Shipment";
-import {ShipmentServiceService} from "../../services/shipment-service.service";
+import {ShipmentService} from "../../services/shipment-service.service";
 
 @Component({
   selector: 'app-search-shipments-results-table',
@@ -22,7 +22,7 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
   @Input()
   showFilters: boolean = false;
 
-  constructor(private shipmentService: ShipmentServiceService) {
+  constructor(private shipmentService: ShipmentService) {
     this.shipmentStatus = Object.values(ShipmentStatus);
     this.shipmentStatus.unshift("Todos");
     console.log(this.shipmentStatus);

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserStatus} from "../../enums/UserStatus";
 import {ClientType} from "../../enums/ClientType";
 import {Client} from "../../models/Client";
-import {ClientServiceService} from "../../services/client-service.service";
+import {ClientService} from "../../services/client-service.service";
 
 @Component({
   selector: 'app-search-clients-results-table',
@@ -18,7 +18,7 @@ export class SearchClientsResultsTableComponent implements OnInit {
   clientType: string[];
   statusType: string[];
 
-  constructor(private clientService: ClientServiceService) {
+  constructor(private clientService: ClientService) {
     this.filterClientStatus = "Todos";
     this.filterClientType = "Todos";
     this.filterNamesString = "";
