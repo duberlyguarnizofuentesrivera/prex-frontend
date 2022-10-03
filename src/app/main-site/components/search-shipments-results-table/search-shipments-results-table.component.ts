@@ -47,15 +47,20 @@ export class SearchShipmentsResultsTableComponent implements OnInit {
     this.loading = true;
 
   }
+
   loadShipments() {
     this.loading = true;
-    if(this.filterShipmentStatus == "Todos"){
+    if (this.filterShipmentStatus == "Todos") {
       this.filterShipmentStatus = "";
     }
     console.log(this.filterDateNumber);
-    this.shipmentService.getShipments(this.filterTicketString, this.filterShipmentStatus, this.filterLocationString, this.filterDateNumber.id).subscribe(data=> {
+    this.shipmentService.getShipments(this.filterTicketString, this.filterShipmentStatus, this.filterLocationString, this.filterDateNumber.id).subscribe(data => {
       this.shipments = data;
       this.loading = false;
     });
+  }
+
+  identity(value: any): Shipment {
+    return value as Shipment;
   }
 }

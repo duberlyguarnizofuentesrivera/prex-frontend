@@ -47,4 +47,8 @@ export class SearchReceiversResultsTableComponent implements OnInit {
     });
   }
 
+  identity(value: any): Receiver {
+    return value as Receiver;
+  }
+
 }

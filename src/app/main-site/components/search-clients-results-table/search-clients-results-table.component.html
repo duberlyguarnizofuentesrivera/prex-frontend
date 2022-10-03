@@ -42,21 +42,21 @@
       <ng-template let-client pTemplate="body">
         <tr>
           <td><span class="p-column-title">Documento</span>
-            <i *ngIf="!client.clientIsCompany" class="pi pi-user"></i>
-            <i *ngIf="client.clientIsCompany" class="pi pi-building"></i>
-            &nbsp;{{client.clientIdNumber}}
+            <i *ngIf="!identity(client).clientIsCompany" class="pi pi-user"></i>
+            <i *ngIf="identity(client).clientIsCompany" class="pi pi-building"></i>
+            &nbsp;{{identity(client).clientIdNumber}}
           </td>
-          <td><span class="p-column-title">Nombres</span>{{client.clientNames}}</td>
-          <td><span class="p-column-title">Teléfono</span>{{client.clientPhone}}</td>
+          <td><span class="p-column-title">Nombres</span>{{identity(client).clientNames}}</td>
+          <td><span class="p-column-title">Teléfono</span>{{identity(client).clientPhone}}</td>
           <td>
             <span class="p-column-title">Estado</span><p-tag
-            *ngIf="client.clientStatus=='Activo'"
-            severity="success" value="{{client.clientStatus}}"></p-tag>
+            *ngIf="identity(client).clientStatus=='Activo'"
+            severity="success" value="{{identity(client).clientStatus}}"></p-tag>
             <p-tag
-              *ngIf="client.clientStatus=='Inactivo'"
-              severity="danger" value="{{client.clientStatus}}"></p-tag>
+              *ngIf="identity(client).clientStatus=='Inactivo'"
+              severity="danger" value="{{identity(client).clientStatus}}"></p-tag>
           </td>
-          <td><span class="p-column-title">Ver Detalles</span><span><a [routerLink]="['/app/clients', client.clientId]"
+          <td><span class="p-column-title">Ver Detalles</span><span><a [routerLink]="['/app/clients', identity(client).clientId]"
                                                                        class="p-button p-button-sm">Detalles</a></span></td>
         </tr>
       </ng-template>

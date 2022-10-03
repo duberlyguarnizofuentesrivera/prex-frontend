@@ -49,26 +49,26 @@
     </ng-template>
     <ng-template let-shipment pTemplate="body">
       <tr>
-        <td><span class="p-column-title">Cód. Envío</span>{{shipment.shipmentCode}}</td>
-        <td><span class="p-column-title">Destinatario</span>{{shipment.shipmentReceiver.receiverNames}}</td>
-        <td><span class="p-column-title">Región</span>{{shipment.shipmentAddress.addressRegion}}</td>
-        <td><span class="p-column-title">Provincia</span>{{shipment.shipmentAddress.addressProvince}}</td>
-        <td><span class="p-column-title">Distrito</span>{{shipment.shipmentAddress.addressDistrict}}</td>
-        <td><span class="p-column-title">Fecha</span>{{shipment.shipmentReceptionDate | date:'dd/MM/yy'}}</td>
+        <td><span class="p-column-title">Cód. Envío</span>{{identity(shipment).shipmentCode}}</td>
+        <td><span class="p-column-title">Destinatario</span>{{identity(shipment).shipmentReceiver.receiverNames}}</td>
+        <td><span class="p-column-title">Región</span>{{identity(shipment).shipmentAddress.addressRegion}}</td>
+        <td><span class="p-column-title">Provincia</span>{{identity(shipment).shipmentAddress.addressProvince}}</td>
+        <td><span class="p-column-title">Distrito</span>{{identity(shipment).shipmentAddress.addressDistrict}}</td>
+        <td><span class="p-column-title">Fecha</span>{{identity(shipment).shipmentReceptionDate | date:'dd/MM/yy'}}</td>
         <td>
           <span class="p-column-title">Estado</span>
-          <p-tag *ngIf="shipment.shipmentStatus=='Entregado'" severity="success"
-                 value="{{shipment.shipmentStatus}}"></p-tag>
+          <p-tag *ngIf="identity(shipment).shipmentStatus=='Entregado'" severity="success"
+                 value="{{identity(shipment).shipmentStatus}}"></p-tag>
           <p-tag
-            *ngIf="shipment.shipmentStatus=='Recepcionado'"
-            severity="warning" value="{{shipment.shipmentStatus}}"></p-tag>
+            *ngIf="identity(shipment).shipmentStatus=='Recepcionado'"
+            severity="warning" value="{{identity(shipment).shipmentStatus}}"></p-tag>
           <p-tag
-            *ngIf="shipment.shipmentStatus=='En Almacén' ||shipment.shipmentStatus=='En Reparto'"
-            severity="info" value="{{shipment.shipmentStatus}}"></p-tag>
-          <p-tag *ngIf="shipment.shipmentStatus=='Devuelto' || shipment.shipmentStatus=='En Devolución'"
-                 severity="danger" value="{{shipment.shipmentStatus}}"></p-tag>
+            *ngIf="identity(shipment).shipmentStatus=='En Almacén' ||identity(shipment).shipmentStatus=='En Reparto'"
+            severity="info" value="{{identity(shipment).shipmentStatus}}"></p-tag>
+          <p-tag *ngIf="identity(shipment).shipmentStatus=='Devuelto' || identity(shipment).shipmentStatus=='En Devolución'"
+                 severity="danger" value="{{identity(shipment).shipmentStatus}}"></p-tag>
         </td>
-        <td><span class="p-column-title">Ver Detalles</span><span><a [routerLink]="['/app/shipments', shipment.shipmentId]"
+        <td><span class="p-column-title">Ver Detalles</span><span><a [routerLink]="['/app/shipments', identity(shipment).shipmentId]"
                                                                      class="p-button p-button-sm">Detalles</a></span>
         </td>
       </tr>

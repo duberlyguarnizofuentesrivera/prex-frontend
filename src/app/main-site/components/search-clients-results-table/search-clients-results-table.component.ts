@@ -47,4 +47,8 @@ export class SearchClientsResultsTableComponent implements OnInit {
     });
   }
 
+  identity(value: any): Client {
+    return value as Client;
+  }
+
 }

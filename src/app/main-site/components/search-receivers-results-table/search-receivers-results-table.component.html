@@ -39,18 +39,18 @@
       <ng-template let-receiver pTemplate="body">
         <tr>
           <td><span class="p-column-title">Documento</span>
-            <i *ngIf="!receiver.receiverIsCompany" class="pi pi-user"></i>
-            <i *ngIf="receiver.receiverIsCompany" class="pi pi-building"></i>
-            &nbsp;{{receiver.receiverIdNumber}}
+            <i *ngIf="!identity(receiver).receiverIsCompany" class="pi pi-user"></i>
+            <i *ngIf="identity(receiver).receiverIsCompany" class="pi pi-building"></i>
+            &nbsp;{{identity(receiver).receiverIdNumber}}
           </td>
-          <td><span class="p-column-title">Nombres</span>{{receiver.receiverNames}}</td>
-          <td><span class="p-column-title">Teléfono</span>{{receiver.receiverPhone}}</td>
-          <td><span class="p-column-title">Email</span>{{receiver.receiverEmail}}</td>
+          <td><span class="p-column-title">Nombres</span>{{identity(receiver).receiverNames}}</td>
+          <td><span class="p-column-title">Teléfono</span>{{identity(receiver).receiverPhone}}</td>
+          <td><span class="p-column-title">Email</span>{{identity(receiver).receiverEmail}}</td>
           <td><span class="p-column-title">Numero de direcciones</span>
-          {{receiver.receiverAddress.length}}
+          {{identity(receiver).receiverAddress.length}}
           </td>
           <td><span class="p-column-title">Ver Detalles</span><span><a
-            [routerLink]="['/app/receivers', receiver.receiverId]"
+            [routerLink]="['/app/receivers', identity(receiver).receiverId]"
             class="p-button p-button-sm">Detalles</a></span></td>
         </tr>
       </ng-template>
