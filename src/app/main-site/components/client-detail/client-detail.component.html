@@ -1,0 +1,67 @@
+<ng-container *ngIf="(clientDetail | async) as clientDetail">
+  <div class="surface-ground">
+    <p-card>
+      <div class="text-500 mb-5"></div>
+      <ul class="list-none p-0 m-0">
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Cliente</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            <i *ngIf="!clientDetail.clientIsCompany" class="pi pi-user"></i>
+            <i *ngIf="clientDetail.clientIsCompany" class="pi pi-building"></i>
+            &nbsp;{{clientDetail.clientNames}} ({{clientDetail.clientIdNumber}})
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+        <li *ngIf="clientDetail.clientIsCompany" class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Nombre de contacto</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            {{clientDetail.clientContactName}}
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Direcciones de recojo</div>
+          <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            <p-listbox [options]="addresses" [(ngModel)]="selectedAddress" optionLabel="addressLine" optionValue="addressId"></p-listbox>
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Teléfono</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{clientDetail.clientPhone == null ? 'Sin teléfono registrado' : clientDetail.clientPhone}}</div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Email</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{clientDetail.clientEmail == null ? 'Sin correo registrado' : clientDetail.clientEmail}}</div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Estado</div>
+          <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            <p-tag *ngIf="clientDetail.clientStatus=='Activo'" severity="success" value="Activo"></p-tag>
+            <p-tag *ngIf="clientDetail.clientStatus=='Inactivo'" severity="danger" value="Inactivo"></p-tag>
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+      </ul>
+    </p-card>
+  </div>
+</ng-container>

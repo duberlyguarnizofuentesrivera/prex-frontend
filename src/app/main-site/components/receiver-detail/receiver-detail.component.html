@@ -1,0 +1,57 @@
+<ng-container *ngIf="(receiverDetail | async) as receiverDetail">
+  <div class="surface-ground">
+    <p-card>
+      <div class="text-500 mb-5"></div>
+      <ul class="list-none p-0 m-0">
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Destinatario</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            <i *ngIf="!receiverDetail.receiverIsCompany" class="pi pi-user"></i>
+            <i *ngIf="receiverDetail.receiverIsCompany" class="pi pi-building"></i>
+            &nbsp;{{receiverDetail.receiverNames}} ({{receiverDetail.receiverIdNumber}})
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+        <li *ngIf="receiverDetail.receiverIsCompany" class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Nombre de contacto</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            {{receiverDetail.receiverContactName}}
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Direcciones </div>
+          <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+            <p-listbox [options]="addresses" [(ngModel)]="selectedAddress" optionLabel="addressLine" optionValue="addressId"></p-listbox>
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Teléfono</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{receiverDetail.receiverPhone == null ? 'Sin teléfono registrado' : receiverDetail.receiverPhone}}</div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Email</div>
+          <div
+            class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{receiverDetail.receiverEmail == null ? 'Sin correo registrado' : receiverDetail.receiverEmail}}</div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button class="p-button-text" icon="pi pi-pencil" label="Editar" pButton pRipple></button>
+          </div>
+        </li>
+      </ul>
+    </p-card>
+  </div>
+</ng-container>

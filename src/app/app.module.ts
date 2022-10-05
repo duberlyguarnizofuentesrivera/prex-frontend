@@ -53,6 +53,13 @@ import {TimelineModule} from "primeng/timeline";
 import {HttpClientModule} from "@angular/common/http";
 import {ImageModule} from "primeng/image";
 import {DatePipe} from "@angular/common";
+import {ReceiverDetailComponent} from './main-site/components/receiver-detail/receiver-detail.component';
+import {
+  PageUserReceiversDetailComponent
+} from './main-site/page-user-receivers-detail/page-user-receivers-detail.component';
+import {ListboxModule} from "primeng/listbox";
+import {ClientDetailComponent} from './main-site/components/client-detail/client-detail.component';
+import {PageUserClientsDetailComponent} from './main-site/page-user-clients-detail/page-user-clients-detail.component';
 
 @NgModule({
   declarations: [
@@ -74,33 +81,38 @@ import {DatePipe} from "@angular/common";
     PageUserTicketsComponent,
     PageUserTicketsNewComponent,
     ShipmentDetailComponent,
-    PageUserShipmentsDetailComponent
+    PageUserShipmentsDetailComponent,
+    ReceiverDetailComponent,
+    PageUserReceiversDetailComponent,
+    ClientDetailComponent,
+    PageUserClientsDetailComponent
   ],
-  imports: [
-    routing,
-    BrowserModule,
-    HttpClientModule,
-    CheckboxModule,
-    InputTextModule,
-    ButtonModule,
-    RippleModule,
-    StyleClassModule,
-    PasswordModule,
-    DividerModule,
-    TableModule,
-    MultiSelectModule,
-    DropdownModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    CardModule,
-    DialogModule,
-    AutoCompleteModule,
-    ChipModule,
-    TagModule,
-    BreadcrumbModule,
-    TimelineModule,
-    ImageModule
-  ],
+    imports: [
+        routing,
+        BrowserModule,
+        HttpClientModule,
+        CheckboxModule,
+        InputTextModule,
+        ButtonModule,
+        RippleModule,
+        StyleClassModule,
+        PasswordModule,
+        DividerModule,
+        TableModule,
+        MultiSelectModule,
+        DropdownModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        CardModule,
+        DialogModule,
+        AutoCompleteModule,
+        ChipModule,
+        TagModule,
+        BreadcrumbModule,
+        TimelineModule,
+        ImageModule,
+        ListboxModule
+    ],
   providers: [
     DatePipe
   ],

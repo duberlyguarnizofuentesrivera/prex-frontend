@@ -13,6 +13,10 @@ import {PageUserTicketsComponent} from "./main-site/page-user-tickets/page-user-
 import {
   PageUserShipmentsDetailComponent
 } from "./main-site/page-user-shipments-detail/page-user-shipments-detail.component";
+import {
+  PageUserReceiversDetailComponent
+} from "./main-site/page-user-receivers-detail/page-user-receivers-detail.component";
+import {PageUserClientsDetailComponent} from "./main-site/page-user-clients-detail/page-user-clients-detail.component";
 
 const appRoutes: Routes = [
   {path: '', component: PageIndexComponent, pathMatch: 'full'},
@@ -22,7 +26,9 @@ const appRoutes: Routes = [
   {path: 'app/shipments', component: PageUserShipmentsComponent, pathMatch: 'full'},
   {path: 'app/shipments/:shipmentId', component: PageUserShipmentsDetailComponent, pathMatch: 'full'},
   {path: 'app/clients', component: PageUserClientsComponent, pathMatch: 'full'},
+  {path: 'app/clients/:clientId', component: PageUserClientsDetailComponent, pathMatch: 'full'},
   {path: 'app/receivers', component: PageUserReceiversComponent, pathMatch: 'full'},
+  {path: 'app/receivers/:receiverId', component: PageUserReceiversDetailComponent, pathMatch: 'full'},
   {path: 'app/tickets', component: PageUserTicketsComponent, pathMatch: 'full'},
   {path: 'app/tickets-new', component: PageUserTicketsNewComponent, pathMatch: 'full'},
 ];
