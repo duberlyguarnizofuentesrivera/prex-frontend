@@ -6,6 +6,7 @@ import {TicketPaymentStatus} from "../enums/TicketPaymentStatus";
 
 export interface Ticket {
   ticketId:number;
+  ticketCode:string;
   shipments:Shipment[];
   ticketTotalCost:number;
   ticketClient: Client;

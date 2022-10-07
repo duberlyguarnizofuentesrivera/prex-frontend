@@ -60,6 +60,10 @@ import {
 import {ListboxModule} from "primeng/listbox";
 import {ClientDetailComponent} from './main-site/components/client-detail/client-detail.component';
 import {PageUserClientsDetailComponent} from './main-site/page-user-clients-detail/page-user-clients-detail.component';
+import {PageNotFoundComponent} from './main-site/page-not-found/page-not-found.component';
+import {
+  SearchTicketsResultsTableComponent
+} from './main-site/components/search-tickets-results-table/search-tickets-results-table.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +89,9 @@ import {PageUserClientsDetailComponent} from './main-site/page-user-clients-deta
     ReceiverDetailComponent,
     PageUserReceiversDetailComponent,
     ClientDetailComponent,
-    PageUserClientsDetailComponent
+    PageUserClientsDetailComponent,
+    PageNotFoundComponent,
+    SearchTicketsResultsTableComponent
   ],
     imports: [
         routing,

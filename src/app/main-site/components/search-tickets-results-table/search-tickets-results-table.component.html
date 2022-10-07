@@ -1,0 +1,84 @@
+<div>
+  <p-card [class]="filtersVisibilityClass + 'mb-2'" header="Filtros">
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-4">
+    <span><label for="float-input-ticket-number">Nro. de ticket: </label>
+    <input [(ngModel)]="filterTicket" id="float-input-ticket-number" pInputText type="text">
+      </span></div>
+
+      <div class="field col-12 md:col-4">
+    <span><label for="dropticketStatus">Estado: </label>
+    <p-dropdown [(ngModel)]="filterPaymentStatus" [options]="ticketPaymentStatus"
+                id="dropticketPaymentStatus"></p-dropdown>
+      </span></div>
+
+      <div class="field col-12 md:col-4">
+    <span><label for="dropticketStatus">Estado: </label>
+    <p-dropdown [(ngModel)]="filterTicketStatus" [options]="ticketStatus" id="dropticketStatus"></p-dropdown>
+      </span></div>
+
+
+      <div class="field col-12 md:col-6">
+    <span><label for="dropDateFilter">Filtrar Por Fecha: </label>
+    <p-dropdown [(ngModel)]="filterDateNumber" [options]="dateFilters" id="dropDateFilter"
+                optionLabel="name"></p-dropdown>
+      </span></div>
+      <div class="field col-12 md:col-6">
+        <p-button (click)="loadTickets()" label="Filtrar"></p-button>
+      </div>
+    </div>
+  </p-card>
+</div>
+<div class="mt-3">
+  <p-card>
+    <p-table (onLazyLoad)="loadTickets()" [lazy]="true" [loading]="loading" [value]="tickets"
+             responsiveLayout="stack">
+      <ng-template pTemplate="caption">
+        Resultados
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Pago</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Ver Detalles</th>
+        </tr>
+      </ng-template>
+      <ng-template let-ticket pTemplate="body">
+        <tr>
+          <td><span class="p-column-title">Código</span>{{identity(ticket).ticketCode}}</td>
+          <td><span class="p-column-title">Cliente</span>
+            <i *ngIf="!identity(ticket).ticketClient.clientIsCompany" class="pi pi-user"></i>
+            <i *ngIf="identity(ticket).ticketClient.clientIsCompany" class="pi pi-building"></i>
+            &nbsp;{{identity(ticket).ticketClient.clientNames}}
+          </td>
+          <td><span class="p-column-title">Pago</span>
+            <p-tag *ngIf="identity(ticket).ticketPaymentStatus=='Pagado'" severity="success"
+                   value="Pagado"></p-tag>
+            <p-tag *ngIf="identity(ticket).ticketPaymentStatus=='No pagado'" severity="warning"
+                   value="No pagado"></p-tag>
+          </td>
+          <td>
+            <span class="p-column-title">Estado</span>
+            <p-tag *ngIf="identity(ticket).ticketStatus=='Normal'" severity="info"
+                   value="{{identity(ticket).ticketStatus}}"></p-tag>
+            <p-tag
+              *ngIf="identity(ticket).ticketStatus=='Editado'"
+              severity="warning" value="{{identity(ticket).ticketStatus}}"></p-tag>
+            <p-tag
+              *ngIf="identity(ticket).ticketStatus=='Anulado'"
+              severity="danger" value="{{identity(ticket).ticketStatus}}"></p-tag>
+          </td>
+          <td><span class="p-column-title">Fecha</span>{{identity(ticket).ticketCreationDate | date:'dd/MM/yy'}}</td>
+
+          <td><span class="p-column-title">Ver Detalles</span><span><a
+            [routerLink]="['/app/tickets', identity(ticket).ticketId]"
+            class="p-button p-button-sm">Detalles</a></span>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

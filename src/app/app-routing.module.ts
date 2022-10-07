@@ -17,6 +17,7 @@ import {
   PageUserReceiversDetailComponent
 } from "./main-site/page-user-receivers-detail/page-user-receivers-detail.component";
 import {PageUserClientsDetailComponent} from "./main-site/page-user-clients-detail/page-user-clients-detail.component";
+import {PageNotFoundComponent} from "./main-site/page-not-found/page-not-found.component";
 
 const appRoutes: Routes = [
   {path: '', component: PageIndexComponent, pathMatch: 'full'},
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   {path: 'app/receivers/:receiverId', component: PageUserReceiversDetailComponent, pathMatch: 'full'},
   {path: 'app/tickets', component: PageUserTicketsComponent, pathMatch: 'full'},
   {path: 'app/tickets-new', component: PageUserTicketsNewComponent, pathMatch: 'full'},
+  {path: '**', component: PageNotFoundComponent, pathMatch: 'full'},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

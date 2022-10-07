@@ -3,9 +3,10 @@
 ## Pages
 
 -[ ] Login error component
--[ ] 404 page
+-[X] 404 page
 -[ ] Connection error component
 -[ ] Show images in external user search page
+-[X] List Ticket page
 -[ ] New Ticket page
 -[ ] New Client page
 -[ ] New Receiver page
