@@ -64,6 +64,8 @@ import {PageNotFoundComponent} from './main-site/page-not-found/page-not-found.c
 import {
   SearchTicketsResultsTableComponent
 } from './main-site/components/search-tickets-results-table/search-tickets-results-table.component';
+import {TicketDetailComponent} from './main-site/components/ticket-detail/ticket-detail.component';
+import {PageUserTicketsDetailComponent} from './main-site/page-user-tickets-detail/page-user-tickets-detail.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import {
     ClientDetailComponent,
     PageUserClientsDetailComponent,
     PageNotFoundComponent,
-    SearchTicketsResultsTableComponent
+    SearchTicketsResultsTableComponent,
+    TicketDetailComponent,
+    PageUserTicketsDetailComponent
   ],
     imports: [
         routing,

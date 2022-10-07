@@ -59,6 +59,10 @@ export class SearchTicketsResultsTableComponent implements OnInit {
     if (this.filterTicketStatus == "Todos") {
       this.filterTicketStatus = "";
     }
+    if (this.filterPaymentStatus == "Todos") {
+      this.filterPaymentStatus = "";
+    }
+
     console.log(this.filterDateNumber);
     this.ticketService.getTickets(this.filterTicket, this.filterTicketStatus, this.filterPaymentStatus, this.filterDateNumber.id).subscribe(data => {
       this.tickets = data;

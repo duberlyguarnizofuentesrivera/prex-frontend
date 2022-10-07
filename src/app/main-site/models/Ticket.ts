@@ -6,13 +6,13 @@ import {TicketPaymentStatus} from "../enums/TicketPaymentStatus";
 
 export interface Ticket {
   ticketId:number;
-  ticketCode:string;
+  ticketCode:string;//
   shipments:Shipment[];
-  ticketTotalCost:number;
-  ticketClient: Client;
-  ticketSystemUser:SystemUser;
-  ticketCreationDate:Date;
-  ticketModificationDate:Date;
-  ticketStatus: TicketStatus;
-  ticketPaymentStatus: TicketPaymentStatus;
+  ticketTotalCost:number;//
+  ticketClient: Client;//
+  ticketSystemUser:SystemUser;//
+  ticketCreationDate:Date;//
+  ticketModificationDate:Date;//
+  ticketStatus: TicketStatus;//
+  ticketPaymentStatus: TicketPaymentStatus;//
 }

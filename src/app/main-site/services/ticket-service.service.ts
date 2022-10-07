@@ -35,6 +35,7 @@ export class TicketService {
       const d = new Date(String(tickets.ticketModificationDate));
       const today = new Date();
       const daysDiff = Math.floor((today.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
+      console.log("days is: " + days);
       // days=1 -> all
       if (days == 2) {
         return daysDiff == 0;

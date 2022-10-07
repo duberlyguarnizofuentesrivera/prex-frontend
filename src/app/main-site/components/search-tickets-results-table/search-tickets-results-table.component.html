@@ -71,7 +71,7 @@
               *ngIf="identity(ticket).ticketStatus=='Anulado'"
               severity="danger" value="{{identity(ticket).ticketStatus}}"></p-tag>
           </td>
-          <td><span class="p-column-title">Fecha</span>{{identity(ticket).ticketCreationDate | date:'dd/MM/yy'}}</td>
+          <td><span class="p-column-title">Fecha</span>{{identity(ticket).ticketModificationDate | date:'dd/MM/yy'}}</td>
 
           <td><span class="p-column-title">Ver Detalles</span><span><a
             [routerLink]="['/app/tickets', identity(ticket).ticketId]"
