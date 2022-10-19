@@ -5,14 +5,14 @@ import {TicketStatus} from "../enums/TicketStatus";
 import {TicketPaymentStatus} from "../enums/TicketPaymentStatus";
 
 export interface Ticket {
-  ticketId:number;
+  ticketId:number;//
   ticketCode:string;//
   shipments:Shipment[];
-  ticketTotalCost:number;//
-  ticketClient: Client;//
-  ticketSystemUser:SystemUser;//
+  ticketTotalCost:number;
+  ticketClient: Client;
+  ticketSystemUser:SystemUser;
   ticketCreationDate:Date;//
-  ticketModificationDate:Date;//
-  ticketStatus: TicketStatus;//
-  ticketPaymentStatus: TicketPaymentStatus;//
+  ticketModificationDate:Date;
+  ticketStatus: TicketStatus;
+  ticketPaymentStatus: TicketPaymentStatus;
 }

@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import {Injectable} from '@angular/core';
 
 @Injectable({

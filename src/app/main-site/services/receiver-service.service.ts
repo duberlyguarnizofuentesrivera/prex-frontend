@@ -13,7 +13,7 @@ export class ReceiverService {
 
 
   getReceiver(receiverId: number): Observable<Receiver> {
-    let url = "http://localhost:3000/receivers/" + receiverId;
+    let url = "http://localhost:3001/receivers/" + receiverId;
     return this.http.get<Receiver>(url).pipe(retry(1), catchError(this.handleError));
   }
 
@@ -34,8 +34,14 @@ export class ReceiverService {
         typeString = "&receiverIsCompany=true";
       }
     }
-    const url = 'http://localhost:3000/receivers/?' + nameString + statusString + typeString;
+    const url = 'http://localhost:3001/receivers/?' + nameString + statusString + typeString;
     return this.http.get<Receiver[]>(url).pipe(retry(1), catchError(this.handleError));
+  }
+
+  //search functions return array, even if is an array of one object
+  getReceiverByDocumentId(receiverIdNumber: string): Observable<Receiver[]> {
+    let url = 'http://localhost:3001/receivers/?receiverIdNumber=';
+    return this.http.get<Receiver[]>(url + receiverIdNumber).pipe(retry(1), catchError(this.handleError));
   }
 
   handleError(error: any) {
@@ -49,5 +55,11 @@ export class ReceiverService {
     return throwError(() => {
       return errorMessage;
     });
+  }
+
+
+  addAddressToReceiver(selectedReceiverAddressId: number, addressId: number): Observable<Receiver> {
+    let url = "http://localhost:3001/receivers/" + selectedReceiverAddressId;
+    return this.http.patch<Receiver>(url, {receiverAddress: addressId}).pipe(retry(1), catchError(this.handleError));
   }
 }

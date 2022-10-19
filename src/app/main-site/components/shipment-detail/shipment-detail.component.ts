@@ -5,6 +5,8 @@ import {MenuItem, PrimeIcons} from "primeng/api";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
 import {DatePipe} from "@angular/common";
+import {ShipmentStatus} from "../../enums/ShipmentStatus";
+import {ShipmentProblem} from "../../enums/ShipmentProblem";
 
 @Component({
   selector: 'app-shipment-detail',
@@ -16,6 +18,7 @@ export class ShipmentDetailComponent implements OnInit {
   shipmentDetail: Observable<Shipment>;
   address: MenuItem[];
   events: any[];
+  shipmentProblem = ShipmentProblem;
 
   constructor(private route: ActivatedRoute, private shipmentService: ShipmentService, private datePipe: DatePipe) {
     const routeParams = this.route.snapshot.paramMap;
@@ -32,7 +35,7 @@ export class ShipmentDetailComponent implements OnInit {
         {label: data.shipmentAddress.addressLine},];
       this.events = [
         {
-          status: 'Recepcionado',
+          status: ShipmentStatus.RECEIVED,
           date: this.datePipe.transform(data.shipmentCreationDate, 'dd/MM/yy'),
           icon: PrimeIcons.CALENDAR,
           color: '#f06bac'
@@ -40,7 +43,7 @@ export class ShipmentDetailComponent implements OnInit {
       ];
       if (data.shipmentReceptionDate != undefined) {
         this.events.push({
-          status: 'En almacén',
+          status: ShipmentStatus.IN_WAREHOUSE,
           date: this.datePipe.transform(data.shipmentReceptionDate, 'dd/MM/yy'),
           icon: PrimeIcons.BOX,
           color: '#8183f4'
@@ -48,7 +51,7 @@ export class ShipmentDetailComponent implements OnInit {
       }
       if (data.shipmentOnRouteDate != undefined) {
         this.events.push({
-          status: 'En reparto',
+          status: ShipmentStatus.IN_TRANSIT,
           date: this.datePipe.transform(data.shipmentOnRouteDate, 'dd/MM/yy'),
           icon: PrimeIcons.CAR,
           color: '#35c4dc'
@@ -56,7 +59,7 @@ export class ShipmentDetailComponent implements OnInit {
       }
       if (data.shipmentOnReturnDate != undefined) {
         this.events.push({
-          status: 'En Devolución',
+          status: ShipmentStatus.IN_RETURN,
           date: this.datePipe.transform(data.shipmentOnReturnDate, 'dd/MM/yy'),
           icon: PrimeIcons.CAR,
           color: '#ff6259'
@@ -64,7 +67,7 @@ export class ShipmentDetailComponent implements OnInit {
       }
       if (data.shipmentReturnDate != undefined) {
         this.events.push({
-          status: 'Devuelto',
+          status: ShipmentStatus.RETURNED,
           date: this.datePipe.transform(data.shipmentReturnDate, 'dd/MM/yy'),
           icon: PrimeIcons.EXCLAMATION_CIRCLE,
           color: '#ff6259'
@@ -72,7 +75,7 @@ export class ShipmentDetailComponent implements OnInit {
       }
       if (data.shipmentDeliveryDate != undefined) {
         this.events.push({
-          status: 'Entregado',
+          status: ShipmentStatus.DELIVERED,
           date: this.datePipe.transform(data.shipmentDeliveryDate, 'dd/MM/yy'),
           icon: PrimeIcons.CHECK,
           color: '#35dc35'

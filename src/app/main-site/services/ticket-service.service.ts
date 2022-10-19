@@ -65,4 +65,8 @@ export class TicketService {
       return errorMessage;
     });
   }
+
+  addTicket(ticket: Ticket) {
+    return this.http.post<Ticket>('http://localhost:3000/tickets', ticket).pipe(retry(1), catchError(this.handleError));
+  }
 }

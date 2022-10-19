@@ -19,21 +19,27 @@ export class ClientService {
     let nameString = "";
     let statusString = "";
     let typeString = "";
-    if(name != null && name != ""){
+    if (name != null && name != "") {
       nameString = "&clientNames_like=" + name;
     }
-    if(status != null && status != "" && status!="Todos"){
+    if (status != null && status != "" && status != "Todos") {
       statusString = "&clientStatus=" + status;
     }
-    if(type != null && type != "" && type!="Todos"){
-      if(type == "Natural"){
-      typeString = "&clientIsCompany=false" ;
-      }else{
-        typeString = "&clientIsCompany=true" ;
+    if (type != null && type != "" && type != "Todos") {
+      if (type == "Natural") {
+        typeString = "&clientIsCompany=false";
+      } else {
+        typeString = "&clientIsCompany=true";
       }
     }
     const url = 'http://localhost:3000/clients/?' + nameString + statusString + typeString;
-    return this.http.get<Client[]>(url ).pipe(retry(1), catchError(this.handleError));
+    return this.http.get<Client[]>(url).pipe(retry(1), catchError(this.handleError));
+  }
+
+  getClientByDocumentID(shipmentClientIdNumber: string):Observable<Client[]>{
+    return this.http.
+    get<Client[]>('http://localhost:3000/clients/?clientIdNumber=' + shipmentClientIdNumber).
+    pipe(retry(1), catchError(this.handleError));
   }
 
   handleError(error: any) {
@@ -48,4 +54,5 @@ export class ClientService {
       return errorMessage;
     });
   }
+
 }

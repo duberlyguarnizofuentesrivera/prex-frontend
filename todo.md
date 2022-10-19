@@ -2,15 +2,15 @@
 
 ## Pages
 
--[ ] Login error component
--[X] 404 page
--[ ] Connection error component
--[ ] Show images in external user search page
--[X] List Ticket page
--[X] Ticket detail page
--[ ] New Ticket page
--[ ] New Client page
--[ ] New Receiver page
+- [ ] Login error component
+- [X] 404 page
+- [ ] Connection error component
+- [ ] Show images in external user search page
+- [X] List Ticket page
+- [X] Ticket detail page
+- [ ] New Ticket page
+- [ ] New Client page
+- [ ] New Receiver page
 - [ ] Print ticket page
 - [ ] Edit ticket components
 - [ ] Assign transporter page

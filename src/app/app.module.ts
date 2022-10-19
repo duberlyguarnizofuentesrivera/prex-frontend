@@ -27,7 +27,7 @@ import {TableModule} from "primeng/table";
 import {PageUserShipmentsComponent} from './main-site/page-user-shipments/page-user-shipments.component';
 import {MultiSelectModule} from "primeng/multiselect";
 import {DropdownModule} from "primeng/dropdown";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CardModule} from "primeng/card";
 import {
@@ -66,6 +66,11 @@ import {
 } from './main-site/components/search-tickets-results-table/search-tickets-results-table.component';
 import {TicketDetailComponent} from './main-site/components/ticket-detail/ticket-detail.component';
 import {PageUserTicketsDetailComponent} from './main-site/page-user-tickets-detail/page-user-tickets-detail.component';
+import {FormlyModule} from '@ngx-formly/core';
+import {FormlyPrimeNGModule} from '@ngx-formly/primeng';
+import {ToggleButtonModule} from "primeng/togglebutton";
+import {ToastModule} from "primeng/toast";
+import {InputNumberModule} from "primeng/inputnumber";
 
 @NgModule({
   declarations: [
@@ -121,7 +126,13 @@ import {PageUserTicketsDetailComponent} from './main-site/page-user-tickets-deta
         BreadcrumbModule,
         TimelineModule,
         ImageModule,
-        ListboxModule
+        ListboxModule,
+        FormlyModule.forRoot(),
+        ReactiveFormsModule,
+        FormlyPrimeNGModule,
+        ToggleButtonModule,
+        ToastModule,
+        InputNumberModule
     ],
   providers: [
     DatePipe

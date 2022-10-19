@@ -1,69 +1,151 @@
 <app-user-header></app-user-header>
-<h1>Creación de Tickets</h1>
-<div class="grid p-fluid">
-  <div class="col-12 md:col-3">
-    <label for="inputNewTicketClient">Nombre o DNI del cliente
-      <div class="p-inputgroup">
-        <input id="inputNewTicketClient" pInputText placeholder="DNI o RUC" type="text">
-        <button type="button" pButton pRipple label="Buscar"></button>
-      </div>
-    </label>
-  </div>
-  <div class="col-12 md:col-3">
-    <label for="inputNewTicketReceiver">Nombre o DNI del Destinatario
-      <div class="p-inputgroup">
-        <input id="inputNewTicketReceiver" pInputText placeholder="DNI o RUC" type="text">
-        <button type="button" pButton pRipple label="Buscar"></button>
-      </div>
-    </label>
-  </div>
-  <div class="col-12 md:col-3">
-    <label for="inputNewTicketRegion">Región
-      <p-autoComplete id="inputNewTicketRegion" [(ngModel)]="region" [suggestions]="regionResults" (completeMethod)="searchRegion($event)" [dropdown]="true" [forceSelection]="true"></p-autoComplete>
-    </label>
-  </div>
-  <div class="col-12 md:col-3">
-    <label for="inputNewTicketProvince">Provincia
-      <p-autoComplete id="inputNewTicketProvince" [(ngModel)]="province" [suggestions]="provinceResults" (completeMethod)="searchProvince($event)" [dropdown]="true" [forceSelection]="true"></p-autoComplete>
-    </label>
-  </div>
-  <div class="col-12 md:col-3">
-    <label for="inputNewTicketDistrict">Distrito
-      <p-autoComplete id="inputNewTicketDistrict" [(ngModel)]="district" [suggestions]="districtResults" (completeMethod)="searchDistrict($event)" [dropdown]="true" [forceSelection]="true"></p-autoComplete>
-    </label>
-  </div>
-  <div class="col-12 md:col-4">
-    <label for="inputNewTicketAddress">Dirección
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-        <input id="inputNewTicketAddress" pInputText placeholder="Dirección" type="text">
-      </div>
-    </label>
-  </div>
-  <div class="col-12 md:col-2">
-    <label for="inputNewTicketCost">Costo
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-        <input id="inputNewTicketCost" pInputText placeholder="S./" type="text">
-      </div>
-    </label>
-  </div>
-  <div class="col-12 md:col-4">
-    <label for="inputNewTicketObs">Observaciones
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-        <input id="inputNewTicketObs" pInputText placeholder="Observaciones" type="text">
-      </div>
-    </label>
-  </div>
-  <div class="col-12 md:col-3 flex align-items-center">
-    <p-checkbox [(ngModel)]="isPickUp" [binary]="true" label="con recojo en local del cliente"></p-checkbox>
-  </div>
-  <div class="col-12 md:col-3 flex align-items-center">
-    <p-button (click)="validateCity()" label="Agregar Envío" ></p-button>
-  </div>
-</div>
-<h3>The city selection is {{validCitySelection? 'valid':'invalid'}}</h3>
+<p-toast></p-toast>
+<p-card styleClass="col-12 mb-3">
+  <ng-template pTemplate="header">
+    <h1>Creación de Tickets</h1>
+  </ng-template>
+  <div class="grid p-fluid">
+    <div class="col-12 md:col-3">
 
+      <label for="inputNewTicketClient">DNI del cliente*:
+        <div class="p-inputgroup">
+          <p-inputNumber [(ngModel)]="shipmentClientDocumentId" [maxlength]="11" [allowEmpty]="false" [useGrouping]="false" Id="inputNewTicketClient" placeholder="DNI o RUC" ></p-inputNumber>
+          <button (click)="searchClient()" icon="pi pi-search" label="Buscar" pButton pRipple type="button"></button>
+        </div>
+      </label>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputNewTicketReceiver">DNI del Destinatario:
+        <div class="p-inputgroup">
+          <p-inputNumber [disabled]="receiverFieldDisabled" [(ngModel)]="shipmentReceiverDocumentId" [maxlength]="11" [allowEmpty]="false" [useGrouping]="false" id="inputNewTicketReceiver" placeholder="DNI o RUC"></p-inputNumber>
+          <button (click)="searchReceiver()" [disabled]="receiverFieldDisabled" icon="pi pi-search" label="Buscar" pButton pRipple type="button"></button>
+        </div>
+      </label>
+    </div>
 
+    <div class="col-12 md:col-5 flex justify-content-center align-items-center">
+      <label for="dropdownAddressList">Dirección
+        de entrega: </label>
+      <div class="p-inputgroup">
+        <p-dropdown [disabled]="addressListFieldDisabled" id="dropdownAddressList" [(ngModel)]="selectedReceiverAddressId" [options]="receiverAddresses"
+                    optionLabel="addressLine"
+                    optionValue="addressId"
+                    [style]="{'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'width':'100%'}"></p-dropdown>
+        <button (click)="showAddressModal()" [disabled]="receiverFieldDisabled" label="Nueva" pButton pRipple type="button"></button>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-3">
+      <label for="inputNewTicketPackages">Cantidad de paquetes:
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-box"></i></span>
+          <p-inputNumber [(ngModel)]="shipmentNumberOfPackages" [maxlength]="2" [allowEmpty]="false" [useGrouping]="false" id="inputNewTicketPackages" placeholder="#"
+                         ></p-inputNumber>
+        </div>
+      </label>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputNewTicketCost">Costo:
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-money-bill"></i></span>
+          <p-inputNumber [(ngModel)]="shipmentCost"  mode="currency" currency="PEN" locale="es-PE" [maxlength]="10" [allowEmpty]="false" id="inputNewTicketCost"  placeholder="S./"></p-inputNumber>
+        </div>
+      </label>
+    </div>
+    <div class="col-12 md:col-4">
+      <label for="inputNewTicketObs">Observaciones:
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-eye"></i></span>
+          <input [(ngModel)]="shipmentObservations" id="inputNewTicketObs" pInputText placeholder="Observaciones"
+                 type="text">
+        </div>
+      </label>
+    </div>
+  </div>
+  <div class="grid p-fluid justify-content-end">
+    <div class="col-6 md:col-2 flex align-items-center justify-content-center">
+      <p-button (click)="addShipment()" icon="pi pi-plus-circle" label="Agregar Envío"></p-button>
+    </div>
+    <div class="col-6 md:col-2 flex align-items-center justify-content-center">
+      <p-button (click)="generateTicket()" icon="pi pi-ticket" label="Generar Ticket"
+                styleClass="p-button-success"></p-button>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <span *ngIf="clientName"><h3>Cliente seleccionado: {{clientName}}</h3></span>
+    *Los datos del cliente y el recojo se mantienen para todo el ticket
+  </ng-template>
+</p-card>
+<p-dialog [(visible)]="displayAddressModal"
+          [draggable]="false"
+          [modal]="true"
+          [resizable]="false"
+          [style]="{width: '50vw', height:'75vh'}" [breakpoints]="{'576px': '90vw', '640px': '85vw', '768px':'75vw'}"
+          [header]="'Nueva dirección para ' + receiverName">
+  <div class="col-12">
+    <label for="inputNewTicketRegion">Región:
+      <p-autoComplete (completeMethod)="searchRegion($event)" [(ngModel)]="region" [dropdown]="true"
+                      [forceSelection]="true" [suggestions]="regionResults"
+                      id="inputNewTicketRegion"></p-autoComplete>
+    </label>
+  </div>
+  <div class="col-12">
+    <label for="inputNewTicketProvince">Provincia:
+      <p-autoComplete (completeMethod)="searchProvince($event)" [(ngModel)]="province" [dropdown]="true"
+                      [forceSelection]="true" [suggestions]="provinceResults"
+                      id="inputNewTicketProvince"></p-autoComplete>
+    </label>
+  </div>
+  <div class="col-12">
+    <label for="inputNewTicketDistrict">Distrito:
+      <p-autoComplete (completeMethod)="searchDistrict($event)" [(ngModel)]="district" [dropdown]="true"
+                      [forceSelection]="true" [suggestions]="districtResults"
+                      id="inputNewTicketDistrict"></p-autoComplete>
+    </label>
+  </div>
+  <div class="col-12">
+    <label for="inputNewTicketAddress">Dirección:
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-directions"></i></span>
+        <input [(ngModel)]="shipmentAddressLine" id="inputNewTicketAddress" pInputText placeholder="Dirección"
+               type="text">
+      </div>
+    </label>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button (click)="displayAddressModal=false" icon="pi pi-check" label="Crear" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+<p-card header="Listado de envíos en el ticket">
+  <p-table [value]="ticketShipments" responsiveLayout="stack">
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col"># Paquetes</th>
+        <th scope="col">Destinatario</th>
+        <th scope="col">Región</th>
+        <th scope="col">Provincia</th>
+        <th scope="col">Distrito</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Costo</th>
+        <th scope="col">Observaciones</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template let-shipment pTemplate="body">
+      <tr>
+        <td><span class="p-column-title"># Paquetes</span>{{identity(shipment).shipmentNumberOfPackages}}</td>
+        <td><span class="p-column-title">Destinatario</span>{{identity(shipment).shipmentReceiver.receiverNames}}</td>
+        <td><span class="p-column-title">Región</span>{{identity(shipment).shipmentAddress.addressRegion}}</td>
+        <td><span class="p-column-title">Provincia</span>{{identity(shipment).shipmentAddress.addressProvince}}</td>
+        <td><span class="p-column-title">Distrito</span>{{identity(shipment).shipmentAddress.addressDistrict}}</td>
+        <td><span class="p-column-title">Dirección</span>{{identity(shipment).shipmentAddress.addressLine}}</td>
+        <td><span class="p-column-title">Costo</span>{{identity(shipment).shipmentCost}}</td>
+        <td><span class="p-column-title">Observaciones</span>{{identity(shipment).shipmentObservations}}</td>
+        <td><span class="p-column-title">Acciones</span>
+          <p-button (click)="removeShipment(identity(shipment).shipmentId)" label="Remover"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
 <app-main-footer></app-main-footer>
