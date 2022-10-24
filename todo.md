@@ -8,7 +8,8 @@
 - [ ] Show images in external user search page
 - [X] List Ticket page
 - [X] Ticket detail page
-- [ ] New Ticket page
+- [X] New Ticket page
+- [ ] New Ticket Full functionality
 - [ ] New Client page
 - [ ] New Receiver page
 - [ ] Print ticket page

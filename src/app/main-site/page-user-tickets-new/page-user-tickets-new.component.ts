@@ -251,7 +251,7 @@ export class PageUserTicketsNewComponent implements OnInit {
     });
   }
   createNewReceiverAddress() {
-    const newaddress: Address = {
+    const newAddress: Address = {
       addressId: 0,
       addressLine: this.shipmentAddressLine,
       addressRegion: this.region,
@@ -259,7 +259,7 @@ export class PageUserTicketsNewComponent implements OnInit {
       addressDistrict: this.district,
       addressObservations: ""
     };
-    this.addressService.addAddress(newaddress).subscribe({
+    this.addressService.addAddress(newAddress).subscribe({
       next: (address) => {
         this.messageService.add({
           severity: 'success',
